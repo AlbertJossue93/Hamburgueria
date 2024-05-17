@@ -4,6 +4,10 @@ package sistema.Dao;
 import java.sql.PreparedStatement;
 import sistema.modelo.Funcionario;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 
 
 public class FuncionarioDao {
@@ -40,5 +44,47 @@ public class FuncionarioDao {
         }
           return resposta;      
     }
+     // Método para verificar as credenciais do funcionário ao fazer login
+    public boolean verificarCredenciais(String nomeOuEmail, String senha) {
+    boolean autenticado = false;
+    String sql = "SELECT COUNT(*) FROM funcionario WHERE (nome = ? OR email = ?) AND senha = ?";
+    PreparedStatement stm = null;
+    ResultSet rs = null;
+    try {
+        stm = c.prepareStatement(sql);
+        stm.setString(1, nomeOuEmail);
+        stm.setString(2, nomeOuEmail);
+        stm.setString(3, senha);
+        
+        rs = stm.executeQuery();
+        if (rs.next()) {
+            int count = rs.getInt(1);
+            autenticado = count > 0;
+        }
+    } catch(SQLException e) {
+        e.printStackTrace(); // Imprime o erro no console, caso ocorra uma excecao...
+    } finally {
+        try {
+            if (rs != null) {
+                rs.close(); // Fecha o ResultSet para liberar memoria...
+            }
+            if (stm != null) {
+                stm.close(); // Fecha o PreparedStatement para liberar memoria...
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Imprime o erro no console, caso ocorra uma exceçao ao fechar o PreparedStatement...
+        }
+    }
     
+    // Se as credenciais não forem válidas, exibe uma mensagem de erro....
+    if (!autenticado) {
+        JOptionPane.showMessageDialog(null, "Nome de usuário, email ou senha incorretos.", "Erro de Autenticação", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    return autenticado; // Retorna se as credenciais foram autenticadas com sucesso ou nao.....
+        
+         
+  
+   }
+
 }
