@@ -2,22 +2,18 @@
 package sistema.modelo;
 
 
-public class Cardapio {
-    private int Id_item;
+public class Bebidas {
+    private int Id_bebida;
     private String nome;
-    private String descricao;
     private float preco;
-   
 
-    public Cardapio(String nome, String descricao, float preco) {
+    public Bebidas(String nome, float preco) {
         this.nome = nome;
-        this.descricao = descricao;
         this.preco = preco;
-  
     }
 
-    public int getId_item() {
-        return Id_item;
+    public int getId_bebida() {
+        return Id_bebida;
     }
 
     public void setNome(String nome) {
@@ -28,14 +24,6 @@ public class Cardapio {
         return nome;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
     public void setPreco(float preco) {
         this.preco = preco;
     }
@@ -43,5 +31,9 @@ public class Cardapio {
     public float getPreco() {
         return preco;
     }
+
+  
+    
+    
     
 }
