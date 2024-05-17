@@ -97,6 +97,7 @@ public class LoginPrinci extends javax.swing.JFrame {
         jLabel2.setText("Login");
 
         OlhoVisible.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/icons8_invisible_20px_1.png"))); // NOI18N
+        OlhoVisible.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         OlhoVisible.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 OlhoVisibleMouseClicked(evt);
@@ -106,6 +107,7 @@ public class LoginPrinci extends javax.swing.JFrame {
         BotaoLogi.setBackground(new java.awt.Color(248, 248, 255));
         BotaoLogi.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         BotaoLogi.setText("Login In");
+        BotaoLogi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotaoLogi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotaoLogiActionPerformed(evt);
@@ -116,6 +118,7 @@ public class LoginPrinci extends javax.swing.JFrame {
 
         BotaoCadastroFunc.setBackground(new java.awt.Color(248, 248, 255));
         BotaoCadastroFunc.setText("Sign Up");
+        BotaoCadastroFunc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotaoCadastroFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotaoCadastroFuncActionPerformed(evt);

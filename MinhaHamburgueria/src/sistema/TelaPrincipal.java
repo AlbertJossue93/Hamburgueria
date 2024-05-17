@@ -25,6 +25,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         GerenciarPed = new javax.swing.JMenuItem();
         MenuCardapio = new javax.swing.JMenu();
         GerenciarCardapio = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        GerenciarBebidas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 102, 0));
@@ -81,7 +83,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Cardapio");
 
         BotaodeSair.setBackground(new java.awt.Color(255, 165, 0));
@@ -89,6 +91,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         BotaodeSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/icone_sair_preto.png"))); // NOI18N
         BotaodeSair.setText("Sair");
         BotaodeSair.setBorder(null);
+        BotaodeSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotaodeSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotaodeSairActionPerformed(evt);
@@ -124,7 +127,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(91, Short.MAX_VALUE))))
+                        .addContainerGap(87, Short.MAX_VALUE))))
         );
 
         jPanel1.getAccessibleContext().setAccessibleName("Cardapio");
@@ -138,6 +141,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         MenuPedido.setText("Pedidos");
 
+        GerenciarPed.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         GerenciarPed.setText("Adicionar pedido");
         GerenciarPed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,6 +154,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         MenuCardapio.setText("Cardapio");
 
+        GerenciarCardapio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         GerenciarCardapio.setText("Gerenciar Cardapio");
         GerenciarCardapio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +164,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuCardapio.add(GerenciarCardapio);
 
         MenuTelaPrincipal.add(MenuCardapio);
+
+        jMenu1.setText("Bebidas");
+
+        GerenciarBebidas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        GerenciarBebidas.setText("Gerenciar Bebidas");
+        GerenciarBebidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GerenciarBebidasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(GerenciarBebidas);
+
+        MenuTelaPrincipal.add(jMenu1);
 
         setJMenuBar(MenuTelaPrincipal);
 
@@ -177,7 +195,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GerenciarCardapioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerenciarCardapioActionPerformed
-        
+        AdicionarLanches gerenciar = new AdicionarLanches();
+        gerenciar.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_GerenciarCardapioActionPerformed
 
     private void BotaodeSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaodeSairActionPerformed
@@ -191,6 +211,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pedido.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_GerenciarPedActionPerformed
+
+    private void GerenciarBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerenciarBebidasActionPerformed
+       AdicionarBebidas bebidas = new AdicionarBebidas();
+       bebidas.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_GerenciarBebidasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,6 +233,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaodeSair;
+    private javax.swing.JMenuItem GerenciarBebidas;
     private javax.swing.JMenuItem GerenciarCardapio;
     private javax.swing.JMenuItem GerenciarPed;
     private javax.swing.JMenu MenuCardapio;
@@ -214,6 +241,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar MenuTelaPrincipal;
     private javax.swing.JTable jCardapio;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

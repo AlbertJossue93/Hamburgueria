@@ -32,7 +32,7 @@ public class AdicionarPed extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jDesktopPane1.setBackground(new java.awt.Color(255, 140, 0));
+        jDesktopPane1.setBackground(new java.awt.Color(255, 165, 0));
 
         jLabel1.setText("Realizar Pedido");
 
@@ -49,10 +49,11 @@ public class AdicionarPed extends javax.swing.JFrame {
         PrecoTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         PrecoTotal.setText("Total a Pagar: R$ 0,00");
 
-        BotaoFinalizar.setBackground(new java.awt.Color(255, 140, 0));
+        BotaoFinalizar.setBackground(new java.awt.Color(255, 165, 0));
         BotaoFinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/icone_verificar_preto.png"))); // NOI18N
         BotaoFinalizar.setText("Finalizar");
         BotaoFinalizar.setBorder(null);
+        BotaoFinalizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotaoFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotaoFinalizarActionPerformed(evt);
@@ -74,7 +75,7 @@ public class AdicionarPed extends javax.swing.JFrame {
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        BotaoCancelar.setBackground(new java.awt.Color(255, 140, 0));
+        BotaoCancelar.setBackground(new java.awt.Color(255, 165, 0));
         BotaoCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/icone_fechar_preto.png"))); // NOI18N
         BotaoCancelar.setText("Cancelar");
         BotaoCancelar.setBorder(null);
@@ -199,7 +200,9 @@ public class AdicionarPed extends javax.swing.JFrame {
     }//GEN-LAST:event_BotaoFinalizarActionPerformed
 
     private void BotaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCancelarActionPerformed
-        
+        TelaPrincipal principal = new TelaPrincipal();
+        principal.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BotaoCancelarActionPerformed
 
     
