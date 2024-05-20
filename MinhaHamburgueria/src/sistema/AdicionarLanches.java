@@ -1,5 +1,10 @@
 
 package sistema;
+import sistema.ConexaoSQlite;
+import java.math.BigDecimal;
+import javax.swing.JOptionPane;
+import sistema.Dao.CardapioDao;
+import sistema.modelo.Cardapio;
 
 public class AdicionarLanches extends javax.swing.JFrame {
 
@@ -17,12 +22,12 @@ public class AdicionarLanches extends javax.swing.JFrame {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        TxtNome = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        TxtDescricao = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        TxtPreco = new javax.swing.JTextField();
         BtoAdicionar = new javax.swing.JButton();
         BtoCancelar = new javax.swing.JButton();
         jDesktopPane2 = new javax.swing.JDesktopPane();
@@ -38,9 +43,9 @@ public class AdicionarLanches extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Descriçao:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        TxtDescricao.setColumns(20);
+        TxtDescricao.setRows(5);
+        jScrollPane1.setViewportView(TxtDescricao);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Valor :");
@@ -94,11 +99,11 @@ public class AdicionarLanches extends javax.swing.JFrame {
         );
 
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(TxtNome, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(TxtPreco, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(BtoAdicionar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(BtoCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jDesktopPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -119,11 +124,11 @@ public class AdicionarLanches extends javax.swing.JFrame {
                         .addGap(172, 172, 172)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(TxtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(87, 356, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -133,7 +138,7 @@ public class AdicionarLanches extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -141,7 +146,7 @@ public class AdicionarLanches extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TxtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtoAdicionar)
@@ -164,7 +169,31 @@ public class AdicionarLanches extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtoAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtoAdicionarActionPerformed
-       
+         try {
+        String nome = TxtNome.getText();
+        String descricao = TxtDescricao.getText(); // Captura o texto do JTextArea
+        BigDecimal preco = new BigDecimal(TxtPreco.getText()); // Converte o preço para BigDecimal
+        Cardapio cardapio = new Cardapio(nome, descricao, preco);
+        
+        
+        ConexaoSQlite conex = new ConexaoSQlite();
+      
+        CardapioDao carda = new CardapioDao(conex.c);
+
+        // Insere o objeto Cardapio no banco de dados
+        String rs = carda.AddLanches(cardapio);
+        
+        
+        if(rs.equals("Lanche cadastrado com sucesso")){
+             JOptionPane.showMessageDialog(rootPane , "Lanche Cadastrado com Sucesso");
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar Lanche!");
+         }
+      
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane,"Ocorreu um erro inesperado, Tente mais Tarde");
+             e.printStackTrace();
+        }
     }//GEN-LAST:event_BtoAdicionarActionPerformed
 
     private void BtoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtoCancelarActionPerformed
@@ -211,6 +240,9 @@ public class AdicionarLanches extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtoAdicionar;
     private javax.swing.JButton BtoCancelar;
+    private javax.swing.JTextArea TxtDescricao;
+    private javax.swing.JTextField TxtNome;
+    private javax.swing.JTextField TxtPreco;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JLabel jLabel1;
@@ -218,8 +250,5 @@ public class AdicionarLanches extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,15 +1,15 @@
 
 package sistema.modelo;
-
+import java.math.BigDecimal;
 
 public class Cardapio {
     private int Id_item;
     private String nome;
     private String descricao;
-    private float preco;
+    private BigDecimal preco;
    
 
-    public Cardapio(String nome, String descricao, float preco) {
+    public Cardapio(String nome, String descricao, BigDecimal preco) {
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
@@ -36,11 +36,11 @@ public class Cardapio {
         return descricao;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
 
-    public float getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
     
