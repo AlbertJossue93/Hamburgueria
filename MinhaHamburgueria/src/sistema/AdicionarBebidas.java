@@ -1,18 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package sistema;
 
-/**
- *
- * @author alber
- */
+import java.math.BigDecimal;
+import javax.swing.JOptionPane;
+import sistema.Dao.BebidasDao;
+import sistema.modelo.Bebidas;
+
+
 public class AdicionarBebidas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AdicionarBebidas
-     */
+ 
     public AdicionarBebidas() {
         initComponents();
     }
@@ -26,10 +23,10 @@ public class AdicionarBebidas extends javax.swing.JFrame {
         jDesktopPane2 = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        TxtNomes = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        TxtValor = new javax.swing.JTextField();
+        BtAdicionarBeb = new javax.swing.JButton();
         BtoCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,19 +60,24 @@ public class AdicionarBebidas extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Nome :");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        TxtNomes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Valor :");
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        TxtValor.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(255, 165, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/icone_adicionar_preto.png"))); // NOI18N
-        jButton1.setText("Adicionar");
-        jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtAdicionarBeb.setBackground(new java.awt.Color(255, 165, 0));
+        BtAdicionarBeb.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BtAdicionarBeb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/icone_adicionar_preto.png"))); // NOI18N
+        BtAdicionarBeb.setText("Adicionar");
+        BtAdicionarBeb.setBorder(null);
+        BtAdicionarBeb.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtAdicionarBeb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtAdicionarBebActionPerformed(evt);
+            }
+        });
 
         BtoCancelar.setBackground(new java.awt.Color(255, 165, 0));
         BtoCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -91,10 +93,10 @@ public class AdicionarBebidas extends javax.swing.JFrame {
 
         jDesktopPane1.setLayer(jDesktopPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(TxtNomes, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(TxtValor, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(BtAdicionarBeb, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(BtoCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -108,11 +110,11 @@ public class AdicionarBebidas extends javax.swing.JFrame {
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addComponent(BtoCancelar)
                         .addGap(71, 71, 71)
-                        .addComponent(jButton1))
+                        .addComponent(BtAdicionarBeb))
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtNomes, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(329, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -122,14 +124,14 @@ public class AdicionarBebidas extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TxtNomes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(BtAdicionarBeb)
                     .addComponent(BtoCancelar))
                 .addGap(87, 87, 87))
         );
@@ -153,6 +155,31 @@ public class AdicionarBebidas extends javax.swing.JFrame {
         pri.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtoCancelarActionPerformed
+
+    private void BtAdicionarBebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtAdicionarBebActionPerformed
+          try{
+            String nome = TxtNomes.getText();
+            BigDecimal preco = new BigDecimal(TxtValor.getText());
+            Bebidas bebida = new Bebidas(nome,preco);
+            
+             ConexaoSQlite cx = new ConexaoSQlite();
+             
+             BebidasDao dao = new BebidasDao(cx.c);
+             
+             String r = dao.AddBebidas(bebida);
+             
+             
+             if(r.equals("Bebida cadastrada com sucesso")){
+               JOptionPane.showMessageDialog(rootPane , "Bebida Cadastrada com Sucesso");
+
+             }else{
+               JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar Bebida!");
+             }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane,"Ocorreu um erro inesperado, Tente mais Tarde");
+             e.printStackTrace();
+        }
+    }//GEN-LAST:event_BtAdicionarBebActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,14 +217,14 @@ public class AdicionarBebidas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtAdicionarBeb;
     private javax.swing.JButton BtoCancelar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField TxtNomes;
+    private javax.swing.JTextField TxtValor;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

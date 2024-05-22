@@ -50,12 +50,12 @@
                       <Group type="102" attributes="0">
                           <Component id="BtoCancelar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="BtAdicionarBeb" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField2" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
+                      <Component id="TxtValor" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                      <Component id="TxtNomes" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="329" max="32767" attributes="0"/>
               </Group>
@@ -68,14 +68,14 @@
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                  <Component id="TxtNomes" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
+                  <Component id="TxtValor" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="87" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="BtAdicionarBeb" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="BtoCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
@@ -130,7 +130,7 @@
             <Property name="text" type="java.lang.String" value="Nome :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="TxtNomes">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
@@ -145,14 +145,14 @@
             <Property name="text" type="java.lang.String" value="Valor :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="TxtValor">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="BtAdicionarBeb">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="a5" red="ff" type="rgb"/>
@@ -171,6 +171,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtAdicionarBebActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BtoCancelar">
           <Properties>

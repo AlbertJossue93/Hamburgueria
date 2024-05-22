@@ -1,13 +1,13 @@
 
 package sistema.modelo;
-
+import java.math.BigDecimal;
 
 public class Bebidas {
     private int Id_bebida;
     private String nome;
-    private float preco;
+    private BigDecimal preco;
 
-    public Bebidas(String nome, float preco) {
+    public Bebidas(String nome, BigDecimal preco) {
         this.nome = nome;
         this.preco = preco;
     }
@@ -24,11 +24,11 @@ public class Bebidas {
         return nome;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
 
-    public float getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 

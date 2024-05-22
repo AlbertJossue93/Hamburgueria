@@ -1,4 +1,12 @@
 package sistema;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.Charset;
 import sistema.ConexaoSQlite;
 import javax.swing.JOptionPane;
 import sistema.Dao.FuncionarioDao;
@@ -6,9 +14,7 @@ import sistema.modelo.Funcionario;
 
 public class CadastroFunci extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CadastroFunci
-     */
+   
     public CadastroFunci() {
         initComponents();
        
@@ -75,6 +81,11 @@ public class CadastroFunci extends javax.swing.JFrame {
         jLabel6.setText("Cep");
 
         TxtCep.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        TxtCep.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TxtCepKeyReleased(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Senha");
@@ -100,6 +111,7 @@ public class CadastroFunci extends javax.swing.JFrame {
         BotaoCancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         BotaoCancelar.setText("Cancelar");
         BotaoCancelar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        BotaoCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotaoCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotaoCancelarActionPerformed(evt);
@@ -110,6 +122,7 @@ public class CadastroFunci extends javax.swing.JFrame {
         botaoSalvar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         botaoSalvar.setText("Salvar");
         botaoSalvar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        botaoSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoSalvarActionPerformed(evt);
@@ -275,9 +288,25 @@ public class CadastroFunci extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BotaoCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void TxtCepKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtCepKeyReleased
+        
+        
+    
+    }//GEN-LAST:event_TxtCepKeyReleased
+    private void ApiEndereco(String cep) throws MalformedURLException, IOException{
+         try{
+            String aUrl = "https://viacep.com.br/ws/" + cep + "/json/";
+            URL url = new URL(aUrl);
+            URLConnection rq = url.openConnection();
+            rq.connect();
+            
+            InputStream is = rq.getInputStream();
+            
+             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+             
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoCancelar;
