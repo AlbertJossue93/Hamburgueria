@@ -7,8 +7,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sistema.ConexaoSQlite;
 import javax.swing.JOptionPane;
+import org.json.JSONObject;
 import sistema.Dao.FuncionarioDao;
 import sistema.modelo.Funcionario;
 
@@ -272,6 +275,7 @@ public class CadastroFunci extends javax.swing.JFrame {
             cadastro.dispose();
             LoginPrinci login = new LoginPrinci();
             login.setVisible(true);
+            this.dispose();
          }else{
               JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar usuário: " + resposta);
           }
@@ -289,23 +293,60 @@ public class CadastroFunci extends javax.swing.JFrame {
     }//GEN-LAST:event_BotaoCancelarActionPerformed
 
     private void TxtCepKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtCepKeyReleased
+       // Obtém o texto do campo TxtCep e remove todos os caracteres não numéricos
+        String cep = TxtCep.getText().replaceAll("[^0-9]","");
+        // Se o comprimento do CEP for maior que 5, insere um hífen na posição correta
+        if(cep.length()>5){
+            cep = cep.substring(0,5) + "-" + cep.substring(5);
+        }
+        // Atualiza o campo TxtCep com o CEP formatado
+        TxtCep.setText(cep);
         
-        
-    
+       // Se o comprimento do CEP (incluindo o hífen) for igual a 9, faz a consulta na API
+         if (cep.length() == 9){
+            try {
+                 // Chama o método ApiEndereco passando o CEP sem o hífen
+                ApiEndereco(cep.replace("-", ""));
+            } catch (IOException ex) {// Registra uma exceção no log se ocorrer um erro de I/O
+                Logger.getLogger(CadastroFunci.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_TxtCepKeyReleased
+    
+    // Metodo para Usar API de endereço do sistema de hamburgueria
     private void ApiEndereco(String cep) throws MalformedURLException, IOException{
          try{
-            String aUrl = "https://viacep.com.br/ws/" + cep + "/json/";
+            String aUrl = "https://viacep.com.br/ws/" + cep + "/json/"; // Monta a URL para a requisição à API do ViaCEP
             URL url = new URL(aUrl);
+             
+           // Abre a conexão com a URL
             URLConnection rq = url.openConnection();
             rq.connect();
             
-            InputStream is = rq.getInputStream();
+            InputStream is = rq.getInputStream();   // Lê o conteúdo da resposta da API
             
              BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+             StringBuilder builder = new StringBuilder();  // Constrói uma string com o conteúdo lido da resposta da API
+             String jso;
              
+             while ((jso = rd.readLine())!= null){
+                 builder.append(jso);
+                 
+             }
+             rd.close();
+             
+             JSONObject jsonOb = new JSONObject(builder.toString());   // Converte a string de resposta para um objeto JSON
+
+            TxtRua.setText(jsonOb.optString("logradouro"));    // Preenche os campos TxtRua e TxtBairro com os valores obtidos do JSON
+            TxtBairro.setText(jsonOb.optString("bairro"));
+
+        } catch (MalformedURLException ex) {   // Trata exceção de URL malformada
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-    }
+        }
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -335,3 +376,4 @@ public class CadastroFunci extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }
+
