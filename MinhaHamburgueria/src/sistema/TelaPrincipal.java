@@ -17,7 +17,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jCardapio = new javax.swing.JTable();
+        jCardapioTa = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         BotaodeSair = new javax.swing.JButton();
         MenuTelaPrincipal = new javax.swing.JMenuBar();
@@ -37,38 +37,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cardapio"));
         jPanel1.setToolTipText("Cardapio");
 
-        jCardapio.setModel(new javax.swing.table.DefaultTableModel(
+        jCardapioTa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Descriçao", "Preço"
+                "Id_Item", "nome_item", "Descriçao", "preço"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jCardapio);
+        ));
+        jScrollPane1.setViewportView(jCardapioTa);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -239,7 +219,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MenuCardapio;
     private javax.swing.JMenu MenuPedido;
     private javax.swing.JMenuBar MenuTelaPrincipal;
-    private javax.swing.JTable jCardapio;
+    private javax.swing.JTable jCardapioTa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;

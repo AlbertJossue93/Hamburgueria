@@ -9,7 +9,8 @@ public class Cardapio {
     private BigDecimal preco;
    
 
-    public Cardapio(String nome, String descricao, BigDecimal preco) {
+    public Cardapio(int Id_item, String nome, String descricao, BigDecimal preco) {
+        this.Id_item = Id_item;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;

@@ -4,6 +4,9 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import sistema.modelo.Cardapio;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.ResultSet;
 
 public class CardapioDao {
      private Connection c;
@@ -35,7 +38,7 @@ public class CardapioDao {
      if(st != null){
          try{
              st.close();
-         }catch(SQLException e){
+          }catch(SQLException e){
              
          }
          }
@@ -43,4 +46,34 @@ public class CardapioDao {
          }
          return rs;
      }
+     public List<Cardapio>CarregarDadosCardapio(){
+         List<Cardapio> cardapioLista = new ArrayList<>();
+           PreparedStatement sst = null;
+           ResultSet rs = null;
+           
+             try{
+               
+               String sql = "SELECT Id_item, nome_item, descricao, preco FROM Itens_Cardapio";
+               sst = this.c.prepareStatement(sql);
+               rs = sst.executeQuery();
+               
+               while(rs.next()){
+                   
+               Cardapio item = new Cardapio(
+               rs.getInt("Id_item"),
+               rs.getString("nome_item"),
+               rs.getString("descricao"),
+               rs.getBigDecimal("preco")
+               
+               );
+                cardapioLista.add(item);  
+               }
+               
+                   
+              
+           }
+      
+           
+     }
+     
 }
