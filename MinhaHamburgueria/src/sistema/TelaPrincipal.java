@@ -1,12 +1,15 @@
 
 package sistema;
-
+import sistema.modelo.Cardapio;
+import sistema.Dao.CardapioDao;
+import java.util.List;
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
    
     public TelaPrincipal() {
         initComponents();
+        CarregarDadosCardapio();
     }
 
   
@@ -198,9 +201,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_GerenciarBebidasActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+     // Método para carregar dados do cardápio
+     private void CarregarDadosCardapio(){
+        try{
+            
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     public static void main(String args[]) {
       
         

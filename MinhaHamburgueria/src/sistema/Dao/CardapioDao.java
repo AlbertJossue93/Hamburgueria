@@ -1,5 +1,6 @@
 
 package sistema.Dao;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -46,34 +47,42 @@ public class CardapioDao {
          }
          return rs;
      }
-     public List<Cardapio>CarregarDadosCardapio(){
+     
+      public List<Cardapio>CarregarDadosCardapio(){
          List<Cardapio> cardapioLista = new ArrayList<>();
            PreparedStatement sst = null;
            ResultSet rs = null;
            
              try{
-               
+             
                String sql = "SELECT Id_item, nome_item, descricao, preco FROM Itens_Cardapio";
                sst = this.c.prepareStatement(sql);
                rs = sst.executeQuery();
                
-               while(rs.next()){
-                   
-               Cardapio item = new Cardapio(
-               rs.getInt("Id_item"),
-               rs.getString("nome_item"),
-               rs.getString("descricao"),
-               rs.getBigDecimal("preco")
                
-               );
-                cardapioLista.add(item);  
-               }
+             while (rs.next()) {
+                int id = rs.getInt("Id_item");
+                String nome = rs.getString("nome_item");
+                String descricao = rs.getString("descricao");
+                BigDecimal preco = rs.getBigDecimal("preco");
+                Cardapio item = new Cardapio(id, nome, descricao, preco);
+                cardapioLista.add(item);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Aqui você pode adicionar um tratamento de erro, como logging ou lançando uma exceção personalizada
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (sst != null) sst.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return cardapioLista;
                
-                   
-              
-           }
-      
-           
+    
      }
      
 }

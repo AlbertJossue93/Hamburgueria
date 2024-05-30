@@ -8,8 +8,16 @@ public class Cardapio {
     private String descricao;
     private BigDecimal preco;
    
-
-    public Cardapio(int Id_item, String nome, String descricao, BigDecimal preco) {
+  
+    
+    // Construtor para criar novos itens sem Id_item
+    public Cardapio(String nome, String descricao, BigDecimal preco) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
+    }
+    // segundo construtor com Id_item...
+    public Cardapio(int Id_item,String nome, String descricao, BigDecimal preco) {
         this.Id_item = Id_item;
         this.nome = nome;
         this.descricao = descricao;
@@ -17,6 +25,10 @@ public class Cardapio {
   
     }
 
+    public void setId_item(int Id_item) {
+        this.Id_item = Id_item;
+    }
+    
     public int getId_item() {
         return Id_item;
     }
