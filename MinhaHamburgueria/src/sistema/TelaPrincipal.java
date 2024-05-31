@@ -3,13 +3,17 @@ package sistema;
 import sistema.modelo.Cardapio;
 import sistema.Dao.CardapioDao;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
    
     public TelaPrincipal() {
         initComponents();
-        CarregarDadosCardapio();
+        CarregarDadosCardapio(); // definimos o metodo carregar dadsos do cardapio para inicizlizar
+                                  // no construtor da tela principal
     }
 
   
@@ -20,7 +24,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jCardapioTa = new javax.swing.JTable();
+        Jtable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         BotaodeSair = new javax.swing.JButton();
         MenuTelaPrincipal = new javax.swing.JMenuBar();
@@ -40,7 +44,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cardapio"));
         jPanel1.setToolTipText("Cardapio");
 
-        jCardapioTa.setModel(new javax.swing.table.DefaultTableModel(
+        Jtable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -51,7 +55,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 "Id_Item", "nome_item", "Descriçao", "preço"
             }
         ));
-        jScrollPane1.setViewportView(jCardapioTa);
+        jScrollPane1.setViewportView(Jtable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -178,7 +182,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GerenciarCardapioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerenciarCardapioActionPerformed
-        AdicionarLanches gerenciar = new AdicionarLanches();
+        AdicionarLanches gerenciar = new AdicionarLanches(this);
         gerenciar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_GerenciarCardapioActionPerformed
@@ -204,10 +208,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
      // Método para carregar dados do cardápio
      private void CarregarDadosCardapio(){
         try{
-            
+            // Instancia o dao e chama o método para obter os dados do cardápio
+            ConexaoSQlite conexao = new ConexaoSQlite();
+           CardapioDao cardapiodao = new CardapioDao(conexao.c);
+           List<Cardapio> cardapioLista = cardapiodao.CarregarDadosCardapio();
+
+            // obtem o modelo da tabela e limpa as linhas que estao existentes
+            DefaultTableModel model = (DefaultTableModel) Jtable1.getModel();
+            model.setRowCount(0); // Limpa a tabela antes de adicionar novos dados
+
+            // Adiciona os dados recuperados na tabela
+            for (Cardapio item : cardapioLista) {
+                Object[] row = {
+                    item.getId_item(),
+                    item.getNome(),
+                    item.getDescricao(),
+                    item.getPreco()
+                };
+                model.addRow(row);
+            }
+
+          } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar dados do cardápio: " + e.getMessage());
+            e.printStackTrace();
+         }
         }
-    }
     
+    public void AtualizarCardapio(){ // Metodo criado para atualizar os dados do cardapio 
+       CarregarDadosCardapio();     // para quando for inserudos novos lanches no sistema.
+     
+    }
     
     
     
@@ -230,10 +260,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem GerenciarBebidas;
     private javax.swing.JMenuItem GerenciarCardapio;
     private javax.swing.JMenuItem GerenciarPed;
+    private javax.swing.JTable Jtable1;
     private javax.swing.JMenu MenuCardapio;
     private javax.swing.JMenu MenuPedido;
     private javax.swing.JMenuBar MenuTelaPrincipal;
-    private javax.swing.JTable jCardapioTa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;

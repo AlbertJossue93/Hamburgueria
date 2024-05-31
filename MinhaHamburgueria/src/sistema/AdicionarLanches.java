@@ -8,11 +8,12 @@ import sistema.modelo.Cardapio;
 
 public class AdicionarLanches extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AdicionarLanches
-     */
-    public AdicionarLanches() {
+     private TelaPrincipal telaprincipal;
+   
+    public AdicionarLanches(TelaPrincipal telaprincipal) {
+        this.telaprincipal = telaprincipal;
         initComponents();
+       
     }
 
    
@@ -186,6 +187,7 @@ public class AdicionarLanches extends javax.swing.JFrame {
         
         if(rs.equals("Lanche cadastrado com sucesso")){
              JOptionPane.showMessageDialog(rootPane , "Lanche Cadastrado com Sucesso");
+             telaprincipal.AtualizarCardapio();
         }else{
             JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar Lanche!");
          }
@@ -229,10 +231,10 @@ public class AdicionarLanches extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+     
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdicionarLanches().setVisible(true);
+                new AdicionarLanches(null).setVisible(true);
             }
         });
     }
