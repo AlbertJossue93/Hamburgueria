@@ -187,7 +187,7 @@ public class AdicionarLanches extends javax.swing.JFrame {
         
         if(rs.equals("Lanche cadastrado com sucesso")){
              JOptionPane.showMessageDialog(rootPane , "Lanche Cadastrado com Sucesso");
-             telaprincipal.AtualizarCardapio();
+             telaprincipal.AtualizarCardapio();// atualiza a tela principal quando um lanche for cadastrado
         }else{
             JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar Lanche!");
          }

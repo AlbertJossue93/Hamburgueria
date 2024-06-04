@@ -27,6 +27,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Jtable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         BotaodeSair = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         MenuTelaPrincipal = new javax.swing.JMenuBar();
         MenuPedido = new javax.swing.JMenu();
         GerenciarPed = new javax.swing.JMenuItem();
@@ -85,21 +86,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(255, 165, 0));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setText("Bebidas");
+        jButton1.setBorder(null);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(310, 310, 310)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotaodeSair, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(BotaodeSair, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(310, 310, 310)
-                        .addComponent(jLabel1)))
-                .addContainerGap(194, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 672, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(39, 39, 39))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +119,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BotaodeSair, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BotaodeSair, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -209,12 +221,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
      private void CarregarDadosCardapio(){
         try{
             // Instancia o dao e chama o método para obter os dados do cardápio
-            ConexaoSQlite conexao = new ConexaoSQlite();
-           CardapioDao cardapiodao = new CardapioDao(conexao.c);
-           List<Cardapio> cardapioLista = cardapiodao.CarregarDadosCardapio();
+            ConexaoSQlite conexao = new ConexaoSQlite();// chama a conexao do banco de dados
+           CardapioDao cardapiodao = new CardapioDao(conexao.c); // conexao com a classe que interage com o banco
+           List<Cardapio> cardapioLista = cardapiodao.CarregarDadosCardapio(); // chama a o metodo de carregar os dados do cardapio
 
             // obtem o modelo da tabela e limpa as linhas que estao existentes
-            DefaultTableModel model = (DefaultTableModel) Jtable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) Jtable1.getModel(); // O jTable pega os dados cadastrados(nesse caso o cardapio)
             model.setRowCount(0); // Limpa a tabela antes de adicionar novos dados
 
             // Adiciona os dados recuperados na tabela
@@ -264,6 +276,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MenuCardapio;
     private javax.swing.JMenu MenuPedido;
     private javax.swing.JMenuBar MenuTelaPrincipal;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
