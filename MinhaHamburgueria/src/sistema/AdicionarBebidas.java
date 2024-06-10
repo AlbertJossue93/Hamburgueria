@@ -8,9 +8,11 @@ import sistema.modelo.Bebidas;
 
 
 public class AdicionarBebidas extends javax.swing.JFrame {
-
+     
+    private TelaDeBebidas teladebebidas;
  
-    public AdicionarBebidas() {
+    public AdicionarBebidas(TelaDeBebidas teladebebidas) {
+        this.teladebebidas = teladebebidas;
         initComponents();
     }
 
@@ -171,7 +173,10 @@ public class AdicionarBebidas extends javax.swing.JFrame {
              
              if(r.equals("Bebida cadastrada com sucesso")){
                JOptionPane.showMessageDialog(rootPane , "Bebida Cadastrada com Sucesso");
-
+               if(teladebebidas != null){
+                   
+                teladebebidas.AtualizarBebidas();
+               }
              }else{
                JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar Bebida!");
              }
@@ -181,9 +186,7 @@ public class AdicionarBebidas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BtAdicionarBebActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -211,7 +214,9 @@ public class AdicionarBebidas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdicionarBebidas().setVisible(true);
+                TelaDeBebidas telaDeBebidas = new TelaDeBebidas();
+                telaDeBebidas.setVisible(true);
+                new AdicionarBebidas(null).setVisible(true);
             }
         });
     }

@@ -5,7 +5,7 @@ import sistema.Dao.CardapioDao;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+// Classes Importas e Bibliotecas do Java..
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
@@ -221,7 +221,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_GerenciarPedActionPerformed
 
     private void GerenciarBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerenciarBebidasActionPerformed
-       AdicionarBebidas bebidas = new AdicionarBebidas();
+       TelaDeBebidas tela = new TelaDeBebidas(); // chamamos a instancia da tela de bebidas´para assim poder armazenar com o construtor de adicionar bebidas
+       AdicionarBebidas bebidas = new AdicionarBebidas(tela);
        bebidas.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_GerenciarBebidasActionPerformed

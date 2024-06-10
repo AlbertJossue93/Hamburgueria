@@ -1,12 +1,19 @@
 
 package sistema;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import sistema.Dao.BebidasDao;
+import sistema.modelo.Bebidas;
+
 
 public class TelaDeBebidas extends javax.swing.JFrame {
 
    
     public TelaDeBebidas() {
         initComponents();
+        CarregarDadosBebidas(); // Mesmo metodo de carregarDados Cardapio com mesma logica
     }
 
     @SuppressWarnings("unchecked")
@@ -104,6 +111,38 @@ public class TelaDeBebidas extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_BotoVoltarActionPerformed
 
+     private void CarregarDadosBebidas(){
+          try{
+            // Instancia o dao e chama o método para obter os dados do cardápio
+            ConexaoSQlite conexx = new ConexaoSQlite();// chama a conexao do banco de dados
+           BebidasDao bebidas = new BebidasDao (conexx.c); // conexao com a classe que interage com o banco
+           List<Bebidas> BebidasLista = bebidas.CarregarDadosBebidas(); // chama a o metodo de carregar os dados das bebidas
+
+            // obtem o modelo da tabela e limpa as linhas que estao existentes
+            DefaultTableModel modelo = (DefaultTableModel) TableBebidas.getModel(); // O jTable pega os dados cadastrados(nesse caso o cardapio)
+            modelo.setRowCount(0); // Limpa a tabela antes de adicionar novos dados
+
+            // Adiciona os dados recuperados na tabela
+            for (Bebidas be : BebidasLista) {
+                Object[] row = {
+                    be.getId_bebida(),
+                    be.getNome(),
+                    be.getPreco()
+                };
+                modelo.addRow(row);
+            }
+
+          } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar dados das bebidas: " + e.getMessage());
+            e.printStackTrace();
+         }
+     }
+     public void AtualizarBebidas(){ // Metodo criado para atualizar os dados das bebidas 
+       CarregarDadosBebidas();     // para quando for inseridos novas bebidas no sistema.
+     
+    }
+    
+    
     
     public static void main(String args[]) {
        
