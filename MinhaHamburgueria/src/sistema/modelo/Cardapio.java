@@ -17,13 +17,18 @@ public class Cardapio {
         this.preco = preco;
     }
     // segundo construtor com Id_item...
-    public Cardapio(int Id_item,String nome, String descricao, BigDecimal preco) {
+    public Cardapio(int Id_item,String nome,String descricao, BigDecimal preco) {
         this.Id_item = Id_item;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
   
     }
+
+    public Cardapio(int id, String nome, BigDecimal preco) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 
     public void setId_item(int Id_item) {
         this.Id_item = Id_item;
@@ -44,6 +49,7 @@ public class Cardapio {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
 
     public String getDescricao() {
         return descricao;
