@@ -1,12 +1,21 @@
 
 package sistema;
 
+import sistema.modelo.Bebidas;
+import sistema.modelo.Cardapio;
+import java.util.List;
+import sistema.Dao.PedidoDao;
+import javax.swing.DefaultComboBoxModel;
+
 
 public class AdicionarPed extends javax.swing.JFrame {
-
+     private List <Cardapio> lanches;
+     private List <Bebidas> bebidas;
+     private PedidoDao pedidodao;
    
     public AdicionarPed() {
         initComponents();
+        CarregarLanchesEBebidas();
     }
 
    
@@ -208,7 +217,23 @@ public class AdicionarPed extends javax.swing.JFrame {
     private void BotaoFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoFinalizarActionPerformed
        
     }//GEN-LAST:event_BotaoFinalizarActionPerformed
-
+     
+    private void CarregarLanchesEBebidas(){
+        try{
+             ConexaoSQlite conex = new ConexaoSQlite();
+             pedidodao = new PedidoDao(conex.c);
+             lanches = pedidodao.obterLanches();
+             bebidas = pedidodao.obterBebidas();
+             DefaultComboBoxModel<String> lancheModel = new DefaultComboBoxModel<>();
+             for(Cardapio lanche : lanches){
+                 lancheModel.addElement(lanche.getId_item() + " - " + lanche.getNome() + " - " + lanche.getPreco());
+             }
+             ComboBoxLanche.setModel(lancheModel);
+        }
+        
+    }
+    
+    
     private void BotaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCancelarActionPerformed
         TelaPrincipal principal = new TelaPrincipal();
         principal.setVisible(true);
