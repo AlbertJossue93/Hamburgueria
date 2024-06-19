@@ -1,15 +1,17 @@
 
 package sistema.modelo;
 
+import java.math.BigDecimal;
+
 public class Pedidos {
     private int Id_pedido;
     private String nome_cliente;
     private String celular_cliente;
     private int item_cardapio_id;
     private int bebida_id;
-    private float preco_total;
+    private BigDecimal preco_total;
 
-    public Pedidos(String nome_cliente, String celular_cliente, int item_cardapio_id, int bebida_id, float preco_total) {
+    public Pedidos(String nome_cliente, String celular_cliente, int item_cardapio_id, int bebida_id, BigDecimal preco_total) {
         this.nome_cliente = nome_cliente;
         this.celular_cliente = celular_cliente;
         this.item_cardapio_id = item_cardapio_id;
@@ -53,11 +55,11 @@ public class Pedidos {
         return bebida_id;
     }
 
-    public void setPreco_total(float preco_total) {
+    public void setPreco_total(BigDecimal preco_total) {
         this.preco_total = preco_total;
     }
 
-    public float getPreco_total() {
+    public BigDecimal getPreco_total() {
         return preco_total;
     }
     

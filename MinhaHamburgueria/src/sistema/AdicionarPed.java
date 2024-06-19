@@ -1,11 +1,13 @@
 
 package sistema;
 
+import java.math.BigDecimal;
 import sistema.modelo.Bebidas;
 import sistema.modelo.Cardapio;
 import java.util.List;
 import sistema.Dao.PedidoDao;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 
 public class AdicionarPed extends javax.swing.JFrame {
@@ -31,9 +33,9 @@ public class AdicionarPed extends javax.swing.JFrame {
         PrecoTotal = new javax.swing.JLabel();
         BotaoFinalizar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        Txtnome = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        Txtcelular = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         ComboBoxBebida = new javax.swing.JComboBox<>();
@@ -76,7 +78,7 @@ public class AdicionarPed extends javax.swing.JFrame {
 
         jLabel6.setText("Nome :");
 
-        jTextField3.setToolTipText("");
+        Txtnome.setToolTipText("");
 
         jLabel7.setText("Celular:");
 
@@ -87,7 +89,7 @@ public class AdicionarPed extends javax.swing.JFrame {
 
         jLabel5.setText("Bebida");
 
-        ComboBoxBebida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboBoxBebida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4", "item 5", "item 6", "item 7", "item 8", "item 9" }));
         ComboBoxBebida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxBebidaActionPerformed(evt);
@@ -112,9 +114,9 @@ public class AdicionarPed extends javax.swing.JFrame {
         jDesktopPane1.setLayer(PrecoTotal, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(BotaoFinalizar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(Txtnome, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(Txtcelular, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jSeparator2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(ComboBoxBebida, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -131,8 +133,8 @@ public class AdicionarPed extends javax.swing.JFrame {
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                            .addComponent(jTextField4)))
+                            .addComponent(Txtnome, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                            .addComponent(Txtcelular)))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(218, 218, 218)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,11 +178,11 @@ public class AdicionarPed extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Txtnome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Txtcelular, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -229,9 +231,47 @@ public class AdicionarPed extends javax.swing.JFrame {
                  lancheModel.addElement(lanche.getId_item() + " - " + lanche.getNome() + " - " + lanche.getPreco());
              }
              ComboBoxLanche.setModel(lancheModel);
+             DefaultComboBoxModel<String> bebidaModel = new DefaultComboBoxModel<>();
+             for(Bebidas bebida : bebidas){
+                 bebidaModel.addElement(bebida.getId_bebida() + " - " + bebida.getNome() + " - " + bebida.getPreco());
+                 
+             }
+             ComboBoxBebida.setModel(bebidaModel);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "erro ao carregar os lanches e bebidas" + e.getMessage());
+            e.printStackTrace();
         }
         
     }
+    
+    
+    private void calcularPrecoTotal(){
+        try{
+            String lancheSelecionado = (String) ComboBoxLanche.getSelectedItem();
+            String bebidaSelecionada = (String) ComboBoxBebida.getSelectedItem();
+            
+            
+            if(lancheSelecionado != null && bebidaSelecionada != null){
+                int lancheId = Integer.parseInt(lancheSelecionado.split(" - ")[0]);
+                int bebidaId = Integer.parseInt(bebidaSelecionada.split(" - ")[0]);
+                
+                
+                BigDecimal precoLanche = lanches.stream().filter(l -> l.getId_item()== lancheId).findFirst().get().getPreco();
+                BigDecimal precoBebida = bebidas.stream().filter(b -> b.getId_bebida() == bebidaId).findFirst().get().getPreco();
+                
+               BigDecimal precoTotal = precoLanche.add(precoBebida);
+               PrecoTotal.setText("Total a Pagar: R$ " + precoTotal);
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao calcular preço total: " + e.getMessage());
+            e.printStackTrace();
+      }
+    }
+    
+    
+    
+    
     
     
     private void BotaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCancelarActionPerformed
@@ -247,7 +287,7 @@ public class AdicionarPed extends javax.swing.JFrame {
     private void ComboBoxBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxBebidaActionPerformed
         
     }//GEN-LAST:event_ComboBoxBebidaActionPerformed
-
+    
     
   
 
@@ -257,6 +297,8 @@ public class AdicionarPed extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboBoxBebida;
     private javax.swing.JComboBox<String> ComboBoxLanche;
     private javax.swing.JLabel PrecoTotal;
+    private javax.swing.JTextField Txtcelular;
+    private javax.swing.JTextField Txtnome;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -265,7 +307,5 @@ public class AdicionarPed extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

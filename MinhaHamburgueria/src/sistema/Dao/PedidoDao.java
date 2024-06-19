@@ -28,7 +28,7 @@ public class PedidoDao {
             stmt.setString(2, pedido.getCelular_cliente());
             stmt.setInt(3, pedido.getItem_cardapio_id());
             stmt.setInt(4, pedido.getBebida_id());
-            stmt.setFloat(5, pedido.getPreco_total());
+            stmt.setBigDecimal(5, pedido.getPreco_total());
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
