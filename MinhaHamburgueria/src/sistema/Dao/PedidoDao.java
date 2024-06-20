@@ -45,40 +45,33 @@ public class PedidoDao {
        }
         public List<Cardapio> obterLanches() {
         List<Cardapio> lanches = new ArrayList<>();
-        String sql = "SELECT Id_item, nome_item, preco FROM Itens_Cardapio";
+        String sql = "SELECT Id_item, nome_item, descricao, preco FROM Itens_Cardapio";
         try (PreparedStatement stmt = c.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
-            while (rs.next()) {
-                int id = rs.getInt("Id_item");
-                String nome = rs.getString("nome_item");
-                BigDecimal preco = rs.getBigDecimal("preco");
-                Cardapio it = new Cardapio(id, nome, preco);
-                lanches.add(it);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+             while (rs.next()) {
+            lanches.add(new Cardapio(rs.getInt("Id_item"), rs.getString("nome_item"), rs.getString("descricao"), rs.getBigDecimal("preco")));
         }
-        return lanches;
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return lanches;
 
     }
 
     public List<Bebidas> obterBebidas() {
         List<Bebidas> bebidas = new ArrayList<>();
-        String sql = "SELECT id_bebida, nome, preco FROM bebidas";
+        String sql = "SELECT Id_bebida, nome, preco FROM bebidas";
         try (PreparedStatement stmt = c.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
-            while (rs.next()) {
-                int id = rs.getInt("id_bebida");
-                String nome = rs.getString("nome");
-                BigDecimal preco = rs.getBigDecimal("preco");
-                bebidas.add(new Bebidas(id, nome, preco));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+             while (rs.next()) {
+            bebidas.add(new Bebidas(rs.getInt("Id_bebida"), rs.getString("nome"), rs.getBigDecimal("preco")));
         }
-        return bebidas;
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return bebidas;
 }
 }
          

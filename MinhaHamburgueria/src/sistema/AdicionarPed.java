@@ -8,6 +8,7 @@ import java.util.List;
 import sistema.Dao.PedidoDao;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import sistema.modelo.Pedidos;
 
 
 public class AdicionarPed extends javax.swing.JFrame {
@@ -55,7 +56,7 @@ public class AdicionarPed extends javax.swing.JFrame {
 
         jLabel2.setText("Lanche");
 
-        ComboBoxLanche.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8" }));
+        ComboBoxLanche.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item 1", "item 2", "item 3" }));
         ComboBoxLanche.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxLancheActionPerformed(evt);
@@ -89,7 +90,7 @@ public class AdicionarPed extends javax.swing.JFrame {
 
         jLabel5.setText("Bebida");
 
-        ComboBoxBebida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4", "item 5", "item 6", "item 7", "item 8", "item 9" }));
+        ComboBoxBebida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item 1", "item 2", "item 3" }));
         ComboBoxBebida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxBebidaActionPerformed(evt);
@@ -217,28 +218,83 @@ public class AdicionarPed extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotaoFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoFinalizarActionPerformed
-       
+        try {
+        // Obtendo os valores dos campos de texto
+        String nomeCliente = Txtnome.getText();
+        String celularCliente = Txtcelular.getText();
+        
+        // Obtendo os itens selecionados nos ComboBox
+        String lancheSelecionado = (String) ComboBoxLanche.getSelectedItem();
+        String bebidaSelecionada = (String) ComboBoxBebida.getSelectedItem();
+        
+        // Verificando se algum campo está vazio
+        if(nomeCliente.isEmpty() || celularCliente.isEmpty() || lancheSelecionado == null || bebidaSelecionada == null) {
+            JOptionPane.showMessageDialog(this , "Por Favor preencha todos os campos!");
+            return;
+        }
+        
+        // Convertendo os itens selecionados para inteiros
+        int lancheId = Integer.parseInt(lancheSelecionado);  // Mudança: Agora pegamos diretamente o ID
+        int bebidaId = Integer.parseInt(bebidaSelecionada);  // Mudança: Agora pegamos diretamente o ID
+
+        // Obtendo os preços dos itens selecionados
+        BigDecimal precoLanche = lanches.stream()
+            .filter(l -> l.getId_item() == lancheId)
+            .findFirst()
+            .get()
+            .getPreco();
+        
+        BigDecimal precoBebida = bebidas.stream()
+            .filter(b -> b.getId_bebida() == bebidaId)
+            .findFirst()
+            .get()
+            .getPreco();
+
+        // Calculando o preço total
+        BigDecimal precoTotal = precoLanche.add(precoBebida);
+        
+        // Criando um novo pedido
+        Pedidos pedido = new Pedidos(nomeCliente, celularCliente, lancheId, bebidaId, precoTotal);
+        
+        // Adicionando o pedido ao banco de dados
+        String resultado = pedidodao.adicionarPedido(pedido);
+
+        // Mostrando mensagem de sucesso
+        JOptionPane.showMessageDialog(this, resultado);
+        
+        // Abrindo a tela principal e fechando a tela atual
+        TelaPrincipal principal = new TelaPrincipal();
+        principal.setVisible(true);
+        this.dispose();
+        
+    } catch (Exception e) {
+        // Mostrando mensagem de erro em caso de exceção
+        JOptionPane.showMessageDialog(this, "Erro ao finalizar pedido: " + e.getMessage());
+        e.printStackTrace();
+      }
     }//GEN-LAST:event_BotaoFinalizarActionPerformed
      
     private void CarregarLanchesEBebidas(){
-        try{
-             ConexaoSQlite conex = new ConexaoSQlite();
-             pedidodao = new PedidoDao(conex.c);
-             lanches = pedidodao.obterLanches();
-             bebidas = pedidodao.obterBebidas();
-             DefaultComboBoxModel<String> lancheModel = new DefaultComboBoxModel<>();
-             for(Cardapio lanche : lanches){
-                 lancheModel.addElement(lanche.getId_item() + " - " + lanche.getNome() + " - " + lanche.getPreco());
-             }
-             ComboBoxLanche.setModel(lancheModel);
-             DefaultComboBoxModel<String> bebidaModel = new DefaultComboBoxModel<>();
-             for(Bebidas bebida : bebidas){
-                 bebidaModel.addElement(bebida.getId_bebida() + " - " + bebida.getNome() + " - " + bebida.getPreco());
-                 
-             }
-             ComboBoxBebida.setModel(bebidaModel);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "erro ao carregar os lanches e bebidas" + e.getMessage());
+       try {
+            ConexaoSQlite conexa = new ConexaoSQlite();
+            PedidoDao pedidoDao = new PedidoDao(conexa.c);
+
+            lanches = pedidoDao.obterLanches();
+            bebidas = pedidoDao.obterBebidas();
+
+            ComboBoxLanche.removeAllItems();
+            for (Cardapio lanche : lanches) {
+                ComboBoxLanche.addItem(String.valueOf(lanche.getId_item()));
+            }
+
+            ComboBoxBebida.removeAllItems();
+            for (Bebidas bebida : bebidas) {
+                ComboBoxBebida.addItem(String.valueOf(bebida.getId_bebida()));
+            }
+
+            calcularPrecoTotal();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar lanches e bebidas: " + e.getMessage());
             e.printStackTrace();
         }
         
@@ -246,27 +302,33 @@ public class AdicionarPed extends javax.swing.JFrame {
     
     
     private void calcularPrecoTotal(){
-        try{
-            String lancheSelecionado = (String) ComboBoxLanche.getSelectedItem();
-            String bebidaSelecionada = (String) ComboBoxBebida.getSelectedItem();
-            
-            
-            if(lancheSelecionado != null && bebidaSelecionada != null){
-                int lancheId = Integer.parseInt(lancheSelecionado.split(" - ")[0]);
-                int bebidaId = Integer.parseInt(bebidaSelecionada.split(" - ")[0]);
-                
-                
-                BigDecimal precoLanche = lanches.stream().filter(l -> l.getId_item()== lancheId).findFirst().get().getPreco();
-                BigDecimal precoBebida = bebidas.stream().filter(b -> b.getId_bebida() == bebidaId).findFirst().get().getPreco();
-                
-               BigDecimal precoTotal = precoLanche.add(precoBebida);
-               PrecoTotal.setText("Total a Pagar: R$ " + precoTotal);
+        try {
+            String selectedLancheId = (String) ComboBoxLanche.getSelectedItem();
+            String selectedBebidaId = (String) ComboBoxBebida.getSelectedItem();
+
+            BigDecimal precoLanche = BigDecimal.ZERO;
+            BigDecimal precoBebida = BigDecimal.ZERO;
+
+            for (Cardapio lanche : lanches) {
+                if (String.valueOf(lanche.getId_item()).equals(selectedLancheId)) {
+                    precoLanche = lanche.getPreco();
+                    break;
+                }
             }
-            
+
+            for (Bebidas bebida : bebidas) {
+                if (String.valueOf(bebida.getId_bebida()).equals(selectedBebidaId)) {
+                    precoBebida = bebida.getPreco();
+                    break;
+                }
+            }
+
+            BigDecimal precoTotal = precoLanche.add(precoBebida);
+            PrecoTotal.setText("Total a Pagar: R$ " + precoTotal.toString());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao calcular preço total: " + e.getMessage());
             e.printStackTrace();
-      }
+        }
     }
     
     
@@ -281,11 +343,11 @@ public class AdicionarPed extends javax.swing.JFrame {
     }//GEN-LAST:event_BotaoCancelarActionPerformed
 
     private void ComboBoxLancheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxLancheActionPerformed
-        
+        calcularPrecoTotal();
     }//GEN-LAST:event_ComboBoxLancheActionPerformed
 
     private void ComboBoxBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxBebidaActionPerformed
-        
+        calcularPrecoTotal();
     }//GEN-LAST:event_ComboBoxBebidaActionPerformed
     
     
