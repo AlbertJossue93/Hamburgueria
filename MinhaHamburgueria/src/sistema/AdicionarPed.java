@@ -6,7 +6,7 @@ import sistema.modelo.Bebidas;
 import sistema.modelo.Cardapio;
 import java.util.List;
 import sistema.Dao.PedidoDao;
-import javax.swing.DefaultComboBoxModel;
+//import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import sistema.modelo.Pedidos;
 
@@ -19,6 +19,8 @@ public class AdicionarPed extends javax.swing.JFrame {
     public AdicionarPed() {
         initComponents();
         CarregarLanchesEBebidas();
+         ConexaoSQlite conex = new ConexaoSQlite();
+         pedidodao = new PedidoDao(conex.c);
     }
 
    
@@ -255,6 +257,8 @@ public class AdicionarPed extends javax.swing.JFrame {
         
         // Criando um novo pedido
         Pedidos pedido = new Pedidos(nomeCliente, celularCliente, lancheId, bebidaId, precoTotal);
+         
+         
         
         // Adicionando o pedido ao banco de dados
         String resultado = pedidodao.adicionarPedido(pedido);
