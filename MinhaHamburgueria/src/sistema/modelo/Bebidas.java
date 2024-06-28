@@ -11,7 +11,7 @@ public class Bebidas {
         this.nome = nome;
         this.preco = preco;
     }
-    // segundo construtor co Id_Bebida
+    // segundo construtor com Id_Bebida
     
        public Bebidas(int Id_bebida,String nome, BigDecimal preco) {
         this.Id_bebida = Id_bebida;

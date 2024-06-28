@@ -143,7 +143,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1.getAccessibleContext().setAccessibleParent(jPanel1);
         jLabel1.getAccessibleContext().setAccessibleName("");
 
-        MenuTelaPrincipal.setBackground(new java.awt.Color(255, 204, 51));
+        MenuTelaPrincipal.setBackground(new java.awt.Color(255, 255, 224));
         MenuTelaPrincipal.setFocusTraversalPolicyProvider(true);
         MenuTelaPrincipal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         MenuTelaPrincipal.setInheritsPopupMenu(true);

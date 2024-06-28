@@ -70,7 +70,7 @@ public class CardapioDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Aqui você pode adicionar um tratamento de erro, como logging ou lançando uma exceção personalizada
+            // exceção personalizada 
         } finally {
             try {
                 if (rs != null) rs.close();
