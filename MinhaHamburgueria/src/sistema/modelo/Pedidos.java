@@ -11,7 +11,16 @@ public class Pedidos {
     private int bebida_id;
     private BigDecimal preco_total;
 
-    public Pedidos(String nome_cliente, String celular_cliente, int item_cardapio_id, int bebida_id, BigDecimal preco_total) {
+    public Pedidos(int Id_pedido,String nome_cliente, String celular_cliente, int item_cardapio_id, int bebida_id, BigDecimal preco_total) {
+       this.Id_pedido = Id_pedido;
+       this.nome_cliente = nome_cliente;
+        this.celular_cliente = celular_cliente;
+        this.item_cardapio_id = item_cardapio_id;
+        this.bebida_id = bebida_id;
+        this.preco_total = preco_total;
+    }
+       // segundo construtor....
+        public Pedidos(String nome_cliente, String celular_cliente, int item_cardapio_id, int bebida_id, BigDecimal preco_total) {
         this.nome_cliente = nome_cliente;
         this.celular_cliente = celular_cliente;
         this.item_cardapio_id = item_cardapio_id;

@@ -31,7 +31,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuTelaPrincipal = new javax.swing.JMenuBar();
         MenuPedido = new javax.swing.JMenu();
         GerenciarPed = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        TelaPedidosClientes = new javax.swing.JMenuItem();
         MenuCardapio = new javax.swing.JMenu();
         GerenciarCardapio = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -159,14 +159,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         MenuPedido.add(GerenciarPed);
 
-        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jMenuItem1.setText("Pedidos de Clientes");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        TelaPedidosClientes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        TelaPedidosClientes.setText("Pedidos de Clientes");
+        TelaPedidosClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                TelaPedidosClientesActionPerformed(evt);
             }
         });
-        MenuPedido.add(jMenuItem1);
+        MenuPedido.add(TelaPedidosClientes);
 
         MenuTelaPrincipal.add(MenuPedido);
 
@@ -243,9 +243,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BotonDeBebidasActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void TelaPedidosClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelaPedidosClientesActionPerformed
+      TelaDePedidos tl = new TelaDePedidos();
+      tl.setVisible(true);
+      this.dispose();
+    }//GEN-LAST:event_TelaPedidosClientesActionPerformed
 
      // Método para carregar dados do cardápio
      private void CarregarDadosCardapio(){
@@ -307,9 +309,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MenuCardapio;
     private javax.swing.JMenu MenuPedido;
     private javax.swing.JMenuBar MenuTelaPrincipal;
+    private javax.swing.JMenuItem TelaPedidosClientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

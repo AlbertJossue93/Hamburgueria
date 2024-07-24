@@ -73,6 +73,35 @@ public class PedidoDao {
     }
     return bebidas;
 }
+    
+       public List<Pedidos> PedidosDosClientes(){
+         List<Pedidos> pedidos = new ArrayList<>();
+           PreparedStatement sst = null;
+           ResultSet rs = null;
+          try{
+              String sql = "SELECT Id_pedido , nome_cliente, celular_cliente, item_cardapio_id, bebida_id, preco_total FROM Pedidos";
+              sst = this.c.prepareStatement(sql);
+              rs = sst.executeQuery();
+              
+                while (rs.next()){
+                   Pedidos pedido = new Pedidos(
+                    rs.getInt("Id_pedido"),
+                    rs.getString("nome_cliente"),
+                    rs.getString("celular_cliente"),
+                    rs.getInt("item_cardapio_id"),
+                    rs.getInt("bebida_id"),
+                    rs.getBigDecimal("preco_total")
+                   );
+                   pedidos.add(pedido);
+            }
+                
+           } catch (SQLException e) {
+            e.printStackTrace();
+            // Aqui você pode adicionar um tratamento de erro, como logging ou lançando uma exceção personalizada
+        }
+
+        return pedidos;
+      }
 }
          
     
