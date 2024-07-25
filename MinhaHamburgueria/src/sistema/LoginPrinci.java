@@ -104,10 +104,10 @@ public class LoginPrinci extends javax.swing.JFrame {
             }
         });
 
-        BotaoLogi.setBackground(new java.awt.Color(255, 255, 224));
+        BotaoLogi.setBackground(new java.awt.Color(248, 248, 255));
         BotaoLogi.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        BotaoLogi.setText("Login In");
-        BotaoLogi.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        BotaoLogi.setText("ENTRAR");
+        BotaoLogi.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         BotaoLogi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotaoLogi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,7 +120,7 @@ public class LoginPrinci extends javax.swing.JFrame {
 
         BotaoCadastroFunc.setBackground(new java.awt.Color(255, 255, 224));
         BotaoCadastroFunc.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        BotaoCadastroFunc.setText("Sign Up");
+        BotaoCadastroFunc.setText("Cadastre -se ");
         BotaoCadastroFunc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotaoCadastroFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,11 +151,11 @@ public class LoginPrinci extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(119, 119, 119)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(BotaoLogi, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(BotaoLogi, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(BotaoCadastroFunc)))
+                        .addGap(147, 147, 147)
+                        .addComponent(BotaoCadastroFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(263, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(

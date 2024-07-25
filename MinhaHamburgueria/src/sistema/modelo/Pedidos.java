@@ -19,7 +19,7 @@ public class Pedidos {
         this.bebida_id = bebida_id;
         this.preco_total = preco_total;
     }
-       // segundo construtor....
+       // segundo construtor usado principalmente para a tela de adicionar os pedidos dos clientes ja que nela o construtor nao vai precisar do 'ID'....
         public Pedidos(String nome_cliente, String celular_cliente, int item_cardapio_id, int bebida_id, BigDecimal preco_total) {
         this.nome_cliente = nome_cliente;
         this.celular_cliente = celular_cliente;

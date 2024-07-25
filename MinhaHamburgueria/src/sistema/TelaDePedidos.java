@@ -3,6 +3,8 @@ package sistema;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import sistema.Dao.PedidoDao;
 import sistema.modelo.Pedidos;
 
@@ -12,6 +14,7 @@ public class TelaDePedidos extends javax.swing.JFrame {
     
     public TelaDePedidos() {
         initComponents();
+        PedidosDosClientes();
     }
 
     
@@ -23,7 +26,7 @@ public class TelaDePedidos extends javax.swing.JFrame {
         jDesktopPane2 = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TableClientes = new javax.swing.JTable();
         BotaoDeVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -54,7 +57,7 @@ public class TelaDePedidos extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -79,7 +82,7 @@ public class TelaDePedidos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TableClientes);
 
         BotaoDeVoltar.setBackground(new java.awt.Color(255, 165, 0));
         BotaoDeVoltar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -151,6 +154,26 @@ public class TelaDePedidos extends javax.swing.JFrame {
              ConexaoSQlite conexx = new ConexaoSQlite();
              PedidoDao dao = new PedidoDao(conexx.c);
              List<Pedidos> pedidos = dao.PedidosDosClientes();
+             
+               // obtem o modelo da tabela e limpa as linhas que estao existentes
+            DefaultTableModel modelo = (DefaultTableModel) TableClientes.getModel(); // O jTable pega os dados cadastrados(nesse caso o cardapio)
+            modelo.setRowCount(0); // Limpa a tabela antes de adicionar novos dados
+             
+            for(Pedidos pe: pedidos){
+                Object[] row = {
+                    pe.getId_pedido(),
+                    pe.getNome_cliente(),
+                    pe.getCelular_cliente(),
+                    pe.getItem_cardapio_id(),
+                    pe.getBebida_id(),
+                    pe.getPreco_total()
+                };
+                modelo.addRow(row);
+                
+            }
+        }catch(Exception e){
+             JOptionPane.showMessageDialog(this, "Erro ao carregar os dados de Pedidos: " + e.getMessage());
+            e.printStackTrace();
         }
     }
     
@@ -188,10 +211,10 @@ public class TelaDePedidos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoDeVoltar;
+    private javax.swing.JTable TableClientes;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
