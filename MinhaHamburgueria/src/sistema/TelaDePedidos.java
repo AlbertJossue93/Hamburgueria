@@ -1,7 +1,7 @@
 
 package sistema;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -28,6 +28,7 @@ public class TelaDePedidos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TableClientes = new javax.swing.JTable();
         BotaoDeVoltar = new javax.swing.JButton();
+        FnzPedido = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,9 +97,23 @@ public class TelaDePedidos extends javax.swing.JFrame {
             }
         });
 
+        FnzPedido.setBackground(new java.awt.Color(255, 165, 0));
+        FnzPedido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        FnzPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/verificar (1).png"))); // NOI18N
+        FnzPedido.setText("Finalizar Pedido");
+        FnzPedido.setBorder(null);
+        FnzPedido.setContentAreaFilled(false);
+        FnzPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        FnzPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FnzPedidoActionPerformed(evt);
+            }
+        });
+
         jDesktopPane1.setLayer(jDesktopPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(BotaoDeVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(FnzPedido, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -106,14 +121,15 @@ public class TelaDePedidos extends javax.swing.JFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jDesktopPane2)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(BotaoDeVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(123, 123, 123)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(170, Short.MAX_VALUE))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotaoDeVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(FnzPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,7 +138,9 @@ public class TelaDePedidos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(BotaoDeVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotaoDeVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FnzPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
         );
 
@@ -145,6 +163,10 @@ public class TelaDePedidos extends javax.swing.JFrame {
         principal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BotaoDeVoltarActionPerformed
+
+    private void FnzPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FnzPedidoActionPerformed
+        
+    }//GEN-LAST:event_FnzPedidoActionPerformed
     
     
     private void PedidosDosClientes(){
@@ -157,7 +179,7 @@ public class TelaDePedidos extends javax.swing.JFrame {
              
                // obtem o modelo da tabela e limpa as linhas que estao existentes
             DefaultTableModel modelo = (DefaultTableModel) TableClientes.getModel(); // O jTable pega os dados cadastrados(nesse caso o cardapio)
-            modelo.setRowCount(0); // Limpa a tabela antes de adicionar novos dados
+            modelo.setRowCount(0); 
              
             for(Pedidos pe: pedidos){
                 Object[] row = {
@@ -211,6 +233,7 @@ public class TelaDePedidos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoDeVoltar;
+    private javax.swing.JButton FnzPedido;
     private javax.swing.JTable TableClientes;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;

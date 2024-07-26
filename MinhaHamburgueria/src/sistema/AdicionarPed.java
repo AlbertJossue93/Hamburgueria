@@ -69,8 +69,8 @@ public class AdicionarPed extends javax.swing.JFrame {
         PrecoTotal.setText("Total a Pagar: R$ 0,00");
 
         BotaoFinalizar.setBackground(new java.awt.Color(255, 165, 0));
-        BotaoFinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/icone_verificar_preto.png"))); // NOI18N
-        BotaoFinalizar.setText("Finalizar");
+        BotaoFinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/icone_adicionar_preto.png"))); // NOI18N
+        BotaoFinalizar.setText("Adicionar");
         BotaoFinalizar.setBorder(null);
         BotaoFinalizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotaoFinalizar.addActionListener(new java.awt.event.ActionListener() {
@@ -235,7 +235,7 @@ public class AdicionarPed extends javax.swing.JFrame {
             return;
         }
         
-        // Convertendo os itens selecionados para inteiros
+        // Convertendo  itens selecionados para inteiros
         int lancheId = Integer.parseInt(lancheSelecionado);  // Mudança: Agora pegamos diretamente o ID
         int bebidaId = Integer.parseInt(bebidaSelecionada);  // Mudança: Agora pegamos diretamente o ID
 
@@ -272,12 +272,12 @@ public class AdicionarPed extends javax.swing.JFrame {
         this.dispose();
         
     } catch (Exception e) {
-        // Mostrando mensagem de erro em caso de exceção
-        JOptionPane.showMessageDialog(this, "Erro ao finalizar pedido: " + e.getMessage());
+        // Mostrando mensagem de erro em caso de alguma exceção
+        JOptionPane.showMessageDialog(this, "Erro ao finalizar o pedido: " + e.getMessage());
         e.printStackTrace();
       }
     }//GEN-LAST:event_BotaoFinalizarActionPerformed
-     
+     // Metodo para carregar os lanches e as bebidas obs: so Carregar os Id de cada um
     private void CarregarLanchesEBebidas(){
        try {
             ConexaoSQlite conexa = new ConexaoSQlite();
@@ -298,13 +298,13 @@ public class AdicionarPed extends javax.swing.JFrame {
 
             calcularPrecoTotal();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro ao carregar lanches e bebidas: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Erro ao carregar os lanches e bebidas: " + e.getMessage());
             e.printStackTrace();
         }
         
     }
     
-    
+    // Metodo para calcular os precos do lanche e as bebidas
     private void calcularPrecoTotal(){
         try {
             String selectedLancheId = (String) ComboBoxLanche.getSelectedItem();
