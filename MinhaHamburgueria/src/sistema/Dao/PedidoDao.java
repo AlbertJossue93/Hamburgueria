@@ -102,6 +102,25 @@ public class PedidoDao {
 
         return pedidos;
       }
+       
+      public boolean deletarPedido(int idpedido){
+          String sql = "DELETE FROM Pedidos WHERE Id_pedido = ?";
+          boolean isDeleted = false;
+          
+          try{
+              PreparedStatement stmt = c.prepareStatement(sql);
+              stmt.setInt(1, idpedido);
+              int rowAffected = stmt.executeUpdate();
+              if(rowAffected > 0){
+                isDeleted = true;
+                  
+              }
+          }catch(SQLException e){
+              System.out.println("Erro ao deletar Pedido" +e.getMessage());
+              e.printStackTrace();
+          }
+          return isDeleted;
+      }
 }
          
     

@@ -166,6 +166,25 @@ public class TelaDePedidos extends javax.swing.JFrame {
 
     private void FnzPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FnzPedidoActionPerformed
         
+        // aqui crie uma variavel selectedRow que vai obter a linha selecionada da tabela
+        int selectedRow = TableClientes.getSelectedRow();
+        if(selectedRow != -1){ // verificar se alguma linha foi selecionada
+            int idpedido = (int) TableClientes.getValueAt(selectedRow, 0); // aqui ele vai obter o ID do pedido da linha selecionada (coluna 0)
+            
+            ConexaoSQlite conexao = new ConexaoSQlite(); //  chama a conexao do banco
+            PedidoDao dao = new PedidoDao(conexao.c); // Instancia o DAO de pedidos passando a conexão
+             // Deleta o pedido no banco de dados com base no ID
+            boolean isDeleted = dao.deletarPedido(idpedido);
+            
+            if(isDeleted){ // verifica se o pedido foi deletado com sucesso
+                ((DefaultTableModel) TableClientes.getModel()).removeRow(selectedRow); //  principalmente ele remove a linha correspondente na tabela
+                 JOptionPane.showMessageDialog(null, "Pedido finalizado e removido da tabela."); 
+            }else{
+                 JOptionPane.showMessageDialog(null, "Erro ao finalizar o pedido. Tente novamente.");
+            }
+        }else{
+              JOptionPane.showMessageDialog(null, "Selecione um pedido para finalizar.");
+        }
     }//GEN-LAST:event_FnzPedidoActionPerformed
     
     
