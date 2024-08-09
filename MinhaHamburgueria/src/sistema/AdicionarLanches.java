@@ -199,9 +199,9 @@ public class AdicionarLanches extends javax.swing.JFrame {
     }//GEN-LAST:event_BtoAdicionarActionPerformed
 
     private void BtoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtoCancelarActionPerformed
-        TelaPrincipal pri = new TelaPrincipal();
-        pri.setVisible(true);
-        this.dispose();
+         TxtNome.setText("");
+         TxtDescricao.setText("");
+         TxtPreco.setText("");
     }//GEN-LAST:event_BtoCancelarActionPerformed
 
  

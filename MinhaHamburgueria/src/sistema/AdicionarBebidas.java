@@ -153,9 +153,8 @@ public class AdicionarBebidas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtoCancelarActionPerformed
-        TelaPrincipal pri = new TelaPrincipal();
-        pri.setVisible(true);
-        this.dispose();
+        TxtNomes.setText("");
+        TxtValor.setText("");
     }//GEN-LAST:event_BtoCancelarActionPerformed
 
     private void BtAdicionarBebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtAdicionarBebActionPerformed

@@ -184,7 +184,7 @@ public class LoginPrinci extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BotaoCadastroFunc)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -258,7 +258,7 @@ public class LoginPrinci extends javax.swing.JFrame {
     private boolean senhaVisivel = true ; // Variável para controlar a visibilidade da senha
     private void OlhoVisibleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OlhoVisibleMouseClicked
         if (evt.getButton() == MouseEvent.BUTTON1) { // Verifica se foi clicado com o botão esquerdo do mouse
-        senhaVisivel = !senhaVisivel; // Inverte o estado da visibilidade da senha primeiro
+        senhaVisivel =!senhaVisivel; // Inverte o estado da visibilidade da senha primeiro
 
         if (senhaVisivel) {
             // Se a senha estiver oculta, torna visível

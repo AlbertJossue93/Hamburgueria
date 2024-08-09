@@ -212,9 +212,9 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="4">
-                        <Column editable="true" title="Id_Item" type="java.lang.Object"/>
-                        <Column editable="true" title="nome_item" type="java.lang.Object"/>
-                        <Column editable="true" title="Descri&#xe7;ao" type="java.lang.Object"/>
+                        <Column editable="true" title="N &#xb0; Item" type="java.lang.Object"/>
+                        <Column editable="true" title="Nome" type="java.lang.Object"/>
+                        <Column editable="false" title="Descri&#xe7;ao" type="java.lang.Object"/>
                         <Column editable="true" title="pre&#xe7;o" type="java.lang.Object"/>
                       </Table>
                     </Property>

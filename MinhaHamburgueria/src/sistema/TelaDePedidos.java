@@ -72,7 +72,7 @@ public class TelaDePedidos extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "Celular", "ID do Cardapio", "ID de Bebida", "Preço A Pagar"
+                "N°", "Nome", "Celular", "N° do Cardapio", "N° de Bebida", "Preço A Pagar"
             }
         ) {
             boolean[] canEdit = new boolean [] {

@@ -53,6 +53,7 @@ public class CadastroFunci extends javax.swing.JFrame {
         TxtNumero = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         TxtSenha = new javax.swing.JTextField();
+        VoltarBto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -264,6 +265,18 @@ public class CadastroFunci extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
+        VoltarBto.setBackground(new java.awt.Color(255, 140, 0));
+        VoltarBto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        VoltarBto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/voltar.png"))); // NOI18N
+        VoltarBto.setText("Voltar");
+        VoltarBto.setBorder(null);
+        VoltarBto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        VoltarBto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VoltarBtoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -278,7 +291,10 @@ public class CadastroFunci extends javax.swing.JFrame {
                         .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(155, 155, 155)
-                        .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(VoltarBto)))
                 .addContainerGap(199, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -291,7 +307,9 @@ public class CadastroFunci extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoSalvar)
                     .addComponent(BotaoCancelar))
-                .addGap(97, 97, 97))
+                .addGap(26, 26, 26)
+                .addComponent(VoltarBto)
+                .addGap(48, 48, 48))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -302,7 +320,7 @@ public class CadastroFunci extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 549, Short.MAX_VALUE)
         );
 
         pack();
@@ -348,9 +366,15 @@ public class CadastroFunci extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
     private void BotaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCancelarActionPerformed
-        LoginPrinci principal = new LoginPrinci();
-        principal.setVisible(true);
-        this.dispose();
+      TxtNome.setText("");
+      TxtCpf.setText("");
+      TxtEmail.setText("");
+      TxtTelefone.setText("");
+      TxtCep.setText("");
+      TxtSenha.setText("");
+      TxtRua.setText("");
+      TxtBairro.setText("");
+      TxtNumero.setText("");
     }//GEN-LAST:event_BotaoCancelarActionPerformed
 
     private void TxtCepKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtCepKeyReleased
@@ -373,6 +397,12 @@ public class CadastroFunci extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_TxtCepKeyReleased
+
+    private void VoltarBtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarBtoActionPerformed
+      LoginPrinci login = new LoginPrinci();
+       login.setVisible(true);
+       this.dispose();  
+    }//GEN-LAST:event_VoltarBtoActionPerformed
     
     // Metodo para Usar API de endereço do sistema de hamburgueria
     private void ApiEndereco(String cep) throws MalformedURLException, IOException{
@@ -421,6 +451,7 @@ public class CadastroFunci extends javax.swing.JFrame {
     private javax.swing.JTextField TxtRua;
     private javax.swing.JTextField TxtSenha;
     private javax.swing.JTextField TxtTelefone;
+    private javax.swing.JButton VoltarBto;
     private javax.swing.JButton botaoSalvar;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;

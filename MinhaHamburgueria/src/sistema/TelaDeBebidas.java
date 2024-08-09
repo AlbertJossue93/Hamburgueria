@@ -40,7 +40,7 @@ public class TelaDeBebidas extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "ID", "Nome", "Preço"
+                "N°", "Nome", "Preço"
             }
         ));
         jScrollPane1.setViewportView(TableBebidas);

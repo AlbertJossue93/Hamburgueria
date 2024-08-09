@@ -43,6 +43,7 @@ public class AdicionarPed extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         ComboBoxBebida = new javax.swing.JComboBox<>();
         BotaoCancelar = new javax.swing.JButton();
+        Voltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,6 +111,18 @@ public class AdicionarPed extends javax.swing.JFrame {
             }
         });
 
+        Voltar.setBackground(new java.awt.Color(255, 165, 0));
+        Voltar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/voltar.png"))); // NOI18N
+        Voltar.setText("Voltar");
+        Voltar.setBorder(null);
+        Voltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VoltarActionPerformed(evt);
+            }
+        });
+
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -124,6 +137,7 @@ public class AdicionarPed extends javax.swing.JFrame {
         jDesktopPane1.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(ComboBoxBebida, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(BotaoCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(Voltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -149,7 +163,7 @@ public class AdicionarPed extends javax.swing.JFrame {
                                 .addComponent(ComboBoxLanche, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(119, 119, 119)
                                 .addComponent(ComboBoxBebida, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(304, Short.MAX_VALUE))
+                .addContainerGap(376, Short.MAX_VALUE))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -169,6 +183,10 @@ public class AdicionarPed extends javax.swing.JFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(266, 266, 266)
                 .addComponent(PrecoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -202,7 +220,9 @@ public class AdicionarPed extends javax.swing.JFrame {
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotaoCancelar))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(Voltar)
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -341,9 +361,8 @@ public class AdicionarPed extends javax.swing.JFrame {
     
     
     private void BotaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCancelarActionPerformed
-        TelaPrincipal principal = new TelaPrincipal();
-        principal.setVisible(true);
-        this.dispose();
+     Txtnome.setText("");
+     Txtcelular.setText("");
     }//GEN-LAST:event_BotaoCancelarActionPerformed
 
     private void ComboBoxLancheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxLancheActionPerformed
@@ -353,6 +372,12 @@ public class AdicionarPed extends javax.swing.JFrame {
     private void ComboBoxBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxBebidaActionPerformed
         calcularPrecoTotal();
     }//GEN-LAST:event_ComboBoxBebidaActionPerformed
+
+    private void VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarActionPerformed
+       TelaPrincipal principal = new TelaPrincipal();
+       principal.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_VoltarActionPerformed
     
     
   
@@ -365,6 +390,7 @@ public class AdicionarPed extends javax.swing.JFrame {
     private javax.swing.JLabel PrecoTotal;
     private javax.swing.JTextField Txtcelular;
     private javax.swing.JTextField Txtnome;
+    private javax.swing.JButton Voltar;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
