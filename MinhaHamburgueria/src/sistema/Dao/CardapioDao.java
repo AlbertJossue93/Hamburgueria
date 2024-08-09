@@ -84,5 +84,22 @@ public class CardapioDao {
                
     
      }
+      
+      public boolean ExcluirLanche(int id_item){
+          String sql = "DELETE FROM Itens_Cardapio WHERE Id_item = ?";
+          boolean apagar = false;
+          try{
+              PreparedStatement sta = c.prepareStatement(sql);
+              sta.setInt(1, id_item);
+               int rowAffected = sta.executeUpdate();
+               if(rowAffected > 0){
+                   apagar = true;
+               }
+          }catch(SQLException e){
+              System.out.println("Erro ao exluir Lanche" +e.getMessage());
+              e.printStackTrace();
+          }
+          return apagar;
+      }
      
 }

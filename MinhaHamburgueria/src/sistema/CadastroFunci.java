@@ -352,8 +352,8 @@ public class CadastroFunci extends javax.swing.JFrame {
              if (resposta.equals("Ok")){
             JOptionPane.showMessageDialog(rootPane, "Usuário cadastrado com sucesso.");
             cadastro.dispose();
-            LoginPrinci login = new LoginPrinci();
-            login.setVisible(true);
+            TelaPrincipal prin = new TelaPrincipal();
+            prin.setVisible(true);
             this.dispose();
          }else{
               JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar usuário: " + resposta);

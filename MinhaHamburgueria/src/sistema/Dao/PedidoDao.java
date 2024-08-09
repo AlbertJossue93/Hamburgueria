@@ -1,6 +1,6 @@
 
 package sistema.Dao;
-import java.math.BigDecimal;
+//import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -116,7 +116,7 @@ public class PedidoDao {
                   
               }
           }catch(SQLException e){
-              System.out.println("Erro ao deletar Pedido" +e.getMessage());
+              System.out.println("Erro ao Excluir Pedido" +e.getMessage());
               e.printStackTrace();
           }
           return isDeleted;

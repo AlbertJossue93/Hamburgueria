@@ -24,11 +24,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Jtable1 = new javax.swing.JTable();
+        TableCardapio = new javax.swing.JTable();
         BotaodeSair = new javax.swing.JButton();
         BotonDeBebidas = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
+        ExcluirLanche = new javax.swing.JButton();
         MenuTelaPrincipal = new javax.swing.JMenuBar();
         MenuPedido = new javax.swing.JMenu();
         GerenciarPed = new javax.swing.JMenuItem();
@@ -47,7 +48,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cardapio"));
         jPanel1.setToolTipText("Cardapio");
 
-        Jtable1.setModel(new javax.swing.table.DefaultTableModel(
+        TableCardapio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -66,7 +67,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(Jtable1);
+        TableCardapio.setSelectionBackground(new java.awt.Color(204, 204, 255));
+        jScrollPane1.setViewportView(TableCardapio);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,23 +133,37 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel1.getAccessibleContext().setAccessibleName("");
 
+        ExcluirLanche.setBackground(new java.awt.Color(255, 165, 0));
+        ExcluirLanche.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        ExcluirLanche.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/trash.png"))); // NOI18N
+        ExcluirLanche.setText("Excluir");
+        ExcluirLanche.setBorder(null);
+        ExcluirLanche.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ExcluirLanche.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExcluirLancheActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jDesktopPane1)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BotaodeSair, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 225, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BotonDeBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))))
-            .addComponent(jDesktopPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonDeBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 238, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ExcluirLanche, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(251, 251, 251))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,15 +171,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ExcluirLanche, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(81, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BotaodeSair, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BotonDeBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(91, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
 
         jPanel1.getAccessibleContext().setAccessibleName("Cardapio");
@@ -275,6 +293,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
       this.dispose();
     }//GEN-LAST:event_TelaPedidosClientesActionPerformed
 
+    private void ExcluirLancheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirLancheActionPerformed
+       try{
+           
+        int selectedrow = TableCardapio.getSelectedRow();
+        
+        if(selectedrow != 1){
+            int id_item = (int)TableCardapio.getValueAt(selectedrow, 0);
+            ConexaoSQlite conexao = new ConexaoSQlite(); 
+            
+            CardapioDao dao = new CardapioDao(conexao.c);
+            
+            boolean apagar = dao.ExcluirLanche(id_item);
+            
+            if(apagar){
+               ((DefaultTableModel) TableCardapio.getModel()).removeRow(selectedrow); //  principalmente ele remove a linha correspondente na tabela
+               JOptionPane.showMessageDialog(null, "Lanche Exluido com sucesso"); 
+            }else{
+               JOptionPane.showMessageDialog(null, "Erro ao excluir lanche");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "selecione um item para excluir");
+        }
+       }catch(Exception e){
+           JOptionPane.showMessageDialog(null, "Ocorreu um erro ao excluir um item do cardapio: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+       }
+    }//GEN-LAST:event_ExcluirLancheActionPerformed
+
      // Método para carregar dados do cardápio
      private void CarregarDadosCardapio(){
         try{
@@ -284,7 +329,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
            List<Cardapio> cardapioLista = cardapiodao.CarregarDadosCardapio(); // chama a o metodo de carregar os dados do cardapio
 
             // obtem o modelo da tabela e limpa as linhas que estao existentes
-            DefaultTableModel model = (DefaultTableModel) Jtable1.getModel(); // O jTable pega os dados cadastrados(nesse caso o cardapio)
+            DefaultTableModel model = (DefaultTableModel) TableCardapio.getModel(); // O jTable pega os dados cadastrados(nesse caso o cardapio)
             model.setRowCount(0); // Limpa a tabela antes de adicionar novos dados
 
             // Adiciona os dados recuperados na tabela
@@ -328,13 +373,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaodeSair;
     private javax.swing.JButton BotonDeBebidas;
+    private javax.swing.JButton ExcluirLanche;
     private javax.swing.JMenuItem GerenciarBebidas;
     private javax.swing.JMenuItem GerenciarCardapio;
     private javax.swing.JMenuItem GerenciarPed;
-    private javax.swing.JTable Jtable1;
     private javax.swing.JMenu MenuCardapio;
     private javax.swing.JMenu MenuPedido;
     private javax.swing.JMenuBar MenuTelaPrincipal;
+    private javax.swing.JTable TableCardapio;
     private javax.swing.JMenuItem TelaPedidosClientes;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;

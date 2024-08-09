@@ -83,6 +83,7 @@ public class TelaDePedidos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        TableClientes.setSelectionBackground(new java.awt.Color(204, 204, 255));
         jScrollPane1.setViewportView(TableClientes);
 
         BotaoDeVoltar.setBackground(new java.awt.Color(255, 165, 0));
