@@ -9,7 +9,7 @@ public class LoginPrinci extends javax.swing.JFrame {
     
     public LoginPrinci() {
         initComponents();
-         
+        
         
         // Configura o evento de clique do mouse para o JLabel "olho"
         OlhoVisible.addMouseListener(new java.awt.event.MouseAdapter() {

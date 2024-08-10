@@ -20,7 +20,7 @@ public class CadastroFunci extends javax.swing.JFrame {
    
     public CadastroFunci() {
         initComponents();
-       
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -38,7 +38,6 @@ public class CadastroFunci extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         TxtNome = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        TxtCpf = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         TxtEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -53,6 +52,7 @@ public class CadastroFunci extends javax.swing.JFrame {
         TxtNumero = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         TxtSenha = new javax.swing.JTextField();
+        Txtcpf = new javax.swing.JFormattedTextField();
         VoltarBto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -118,8 +118,6 @@ public class CadastroFunci extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Cpf");
 
-        TxtCpf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Email");
 
@@ -160,10 +158,16 @@ public class CadastroFunci extends javax.swing.JFrame {
 
         TxtSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        Txtcpf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        try {
+            Txtcpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         jDesktopPane2.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(TxtNome, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane2.setLayer(TxtCpf, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(TxtEmail, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -178,17 +182,12 @@ public class CadastroFunci extends javax.swing.JFrame {
         jDesktopPane2.setLayer(TxtNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(TxtSenha, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(Txtcpf, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane2Layout = new javax.swing.GroupLayout(jDesktopPane2);
         jDesktopPane2.setLayout(jDesktopPane2Layout);
         jDesktopPane2Layout.setHorizontalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane2Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane2Layout.createSequentialGroup()
                 .addContainerGap(54, Short.MAX_VALUE)
                 .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,12 +215,15 @@ public class CadastroFunci extends javax.swing.JFrame {
                             .addComponent(TxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jDesktopPane2Layout.createSequentialGroup()
                         .addGap(76, 76, 76)
-                        .addComponent(jLabel2)
+                        .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(TxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Txtcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 273, Short.MAX_VALUE))
         );
         jDesktopPane2Layout.setVerticalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,7 +235,7 @@ public class CadastroFunci extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(TxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Txtcpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -290,12 +292,13 @@ public class CadastroFunci extends javax.swing.JFrame {
                         .addGap(69, 69, 69)
                         .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(VoltarBto)))
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addContainerGap(372, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(155, 155, 155)
+                .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,7 +333,7 @@ public class CadastroFunci extends javax.swing.JFrame {
            
         Funcionario funcionario = new Funcionario(
         TxtNome.getText(),
-        TxtCpf.getText(),
+        Txtcpf.getText(),
         TxtEmail.getText(),
         TxtTelefone.getText(),
         TxtCep.getText(),
@@ -367,7 +370,7 @@ public class CadastroFunci extends javax.swing.JFrame {
 
     private void BotaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCancelarActionPerformed
       TxtNome.setText("");
-      TxtCpf.setText("");
+      Txtcpf.setText("");
       TxtEmail.setText("");
       TxtTelefone.setText("");
       TxtCep.setText("");
@@ -444,13 +447,13 @@ public class CadastroFunci extends javax.swing.JFrame {
     private javax.swing.JButton BotaoCancelar;
     private javax.swing.JTextField TxtBairro;
     private javax.swing.JTextField TxtCep;
-    private javax.swing.JTextField TxtCpf;
     private javax.swing.JTextField TxtEmail;
     private javax.swing.JTextField TxtNome;
     private javax.swing.JTextField TxtNumero;
     private javax.swing.JTextField TxtRua;
     private javax.swing.JTextField TxtSenha;
     private javax.swing.JTextField TxtTelefone;
+    private javax.swing.JFormattedTextField Txtcpf;
     private javax.swing.JButton VoltarBto;
     private javax.swing.JButton botaoSalvar;
     private javax.swing.JDesktopPane jDesktopPane1;

@@ -16,7 +16,7 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="MenuPedido">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pedidos"/>
+            <Property name="text" type="java.lang.String" value="Pedidos    |"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="GerenciarPed">
@@ -45,7 +45,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="MenuCardapio">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cardapio"/>
+            <Property name="text" type="java.lang.String" value="Cardapio   |"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="GerenciarCardapio">

@@ -13,7 +13,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
         CarregarDadosCardapio(); // definimos o metodo carregar dadsos do cardapio para inicizlizar
-                                  // no construtor da tela principal
+         
+                                // no construtor da tela principal
     }
 
   
@@ -192,7 +193,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuTelaPrincipal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         MenuTelaPrincipal.setInheritsPopupMenu(true);
 
-        MenuPedido.setText("Pedidos");
+        MenuPedido.setText("Pedidos    |");
 
         GerenciarPed.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         GerenciarPed.setText("Adicionar pedido");
@@ -214,7 +215,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         MenuTelaPrincipal.add(MenuPedido);
 
-        MenuCardapio.setText("Cardapio");
+        MenuCardapio.setText("Cardapio   |");
 
         GerenciarCardapio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         GerenciarCardapio.setText("Gerenciar Cardapio");
