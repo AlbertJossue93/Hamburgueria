@@ -104,6 +104,9 @@ public class LoginPrinci extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 OlhoVisibleMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                OlhoVisibleMousePressed(evt);
+            }
         });
 
         BotaoLogi.setBackground(new java.awt.Color(248, 248, 255));
@@ -254,9 +257,18 @@ public class LoginPrinci extends javax.swing.JFrame {
         this.dispose(); // Fechar a tela de login
      
     }//GEN-LAST:event_BotaoCadastroFuncActionPerformed
-    private boolean senhaVisivel = true ; // Variável para controlar a visibilidade da senha
+     // Variável para controlar a visibilidade da senha
     
     private void OlhoVisibleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OlhoVisibleMouseClicked
+         
+        
+      
+    }//GEN-LAST:event_OlhoVisibleMouseClicked
+    
+    
+    private boolean senhaVisivel = true ;
+    
+    private void OlhoVisibleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OlhoVisibleMousePressed
          if (evt.getButton() == MouseEvent.BUTTON1) { // Verifica se foi clicado com o botão esquerdo do mouse
         
         // Se a senha está visível, torná-la oculta
@@ -279,9 +291,7 @@ public class LoginPrinci extends javax.swing.JFrame {
        
 
     }
-        
-      
-    }//GEN-LAST:event_OlhoVisibleMouseClicked
+    }//GEN-LAST:event_OlhoVisibleMousePressed
 
    
     public static void main(String args[]) {

@@ -252,6 +252,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="OlhoVisibleMouseClicked"/>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="OlhoVisibleMousePressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="BotaoLogi">
