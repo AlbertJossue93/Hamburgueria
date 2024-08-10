@@ -81,5 +81,22 @@ public class BebidasDao {
 
         return BebidasLista;
       }
+      
+      public boolean ExcluirBebida(int id_bebida){
+          String sql = "DELETE FROM Bebidas WHERE Id_bebida = ?";
+          boolean excluir = false;
+          try{
+              PreparedStatement sta = c.prepareStatement(sql);
+              sta.setInt(1, id_bebida);
+               int rowAffected = sta.executeUpdate();
+               if(rowAffected > 0){
+                   excluir = true;
+               }
+          }catch(SQLException e){
+              System.out.println("Erro ao exluir Bebida" +e.getMessage());
+              e.printStackTrace();
+          }
+          return excluir;
+      }
 }
 

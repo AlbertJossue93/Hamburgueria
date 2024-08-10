@@ -387,7 +387,7 @@ public class CadastroFunci extends javax.swing.JFrame {
         // Atualiza o campo TxtCep com o CEP formatado
         TxtCep.setText(cep);
         
-       // Se o comprimento do CEP (incluindo o hífen) for igual a 9, faz a consulta na API
+       // Se o comprimento do CEP  for igual a 9, faz a consulta na API
          if (cep.length() == 9){
             try {
                  // Chama o método ApiEndereco passando o CEP sem o hífen

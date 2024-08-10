@@ -25,6 +25,7 @@ public class TelaDeBebidas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TableBebidas = new javax.swing.JTable();
         BotoVoltar = new javax.swing.JButton();
+        BebidaExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,38 +58,55 @@ public class TelaDeBebidas extends javax.swing.JFrame {
             }
         });
 
+        BebidaExcluir.setBackground(new java.awt.Color(255, 165, 0));
+        BebidaExcluir.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        BebidaExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/trash.png"))); // NOI18N
+        BebidaExcluir.setText("Excluir ");
+        BebidaExcluir.setBorder(null);
+        BebidaExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BebidaExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BebidaExcluirActionPerformed(evt);
+            }
+        });
+
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(BotoVoltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(BebidaExcluir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(129, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(105, 105, 105))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(BotoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(148, 148, 148)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(320, 320, 320)
+                        .addGap(332, 332, 332)
                         .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(BotoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BebidaExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(BotoVoltar)
-                .addGap(22, 22, 22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotoVoltar)
+                    .addComponent(BebidaExcluir))
+                .addGap(34, 34, 34))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -110,6 +128,33 @@ public class TelaDeBebidas extends javax.swing.JFrame {
        pr.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_BotoVoltarActionPerformed
+
+    private void BebidaExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BebidaExcluirActionPerformed
+          try{
+           
+        int selectedrow = TableBebidas.getSelectedRow();
+        
+        if(selectedrow != 1){
+            int id_bebida = (int)TableBebidas.getValueAt(selectedrow, 0);
+            ConexaoSQlite conexao = new ConexaoSQlite(); 
+            
+            BebidasDao dao = new BebidasDao (conexao.c);
+            
+            boolean excluir = dao.ExcluirBebida(id_bebida);
+            
+            if(excluir){
+               ((DefaultTableModel) TableBebidas.getModel()).removeRow(selectedrow); //  principalmente ele remove a linha correspondente na tabela
+               JOptionPane.showMessageDialog(null, "Bebida Exluida com sucesso"); 
+            }else{
+               JOptionPane.showMessageDialog(null, "Erro ao excluir uma Bebida");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "selecione um bebida para excluir");
+        }
+       }catch(Exception e){
+           JOptionPane.showMessageDialog(null, "Ocorreu um erro ao excluir uma Bebida " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+       }
+    }//GEN-LAST:event_BebidaExcluirActionPerformed
 
      private void CarregarDadosBebidas(){
           try{
@@ -154,6 +199,7 @@ public class TelaDeBebidas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BebidaExcluir;
     private javax.swing.JButton BotoVoltar;
     private javax.swing.JTable TableBebidas;
     private javax.swing.JDesktopPane jDesktopPane1;

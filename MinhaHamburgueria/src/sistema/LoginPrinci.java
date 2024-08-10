@@ -1,5 +1,6 @@
 
 package sistema;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import sistema.Dao.FuncionarioDao;
@@ -13,7 +14,8 @@ public class LoginPrinci extends javax.swing.JFrame {
         // Configura o evento de clique do mouse para o JLabel "olho"
         OlhoVisible.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                OlhoVisibleMouseClicked(evt); // Chama o método que você definiu para lidar com o clique do mouse
+                OlhoVisibleMouseClicked(evt);
+               // Chama o método que você definiu para lidar com o clique do mouse
             }
         });
         
@@ -136,10 +138,10 @@ public class LoginPrinci extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(OlhoVisible, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(OlhoVisible)
+                            .addComponent(jLabel1))
+                        .addGap(23, 23, 23)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(UsuarioLogi, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(separador1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,18 +166,15 @@ public class LoginPrinci extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(UsuarioLogi, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(UsuarioLogi, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(14, 14, 14)
                 .addComponent(separador1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Senhapass, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(OlhoVisible, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(OlhoVisible, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Senhapass))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -184,7 +183,7 @@ public class LoginPrinci extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BotaoCadastroFunc)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -256,25 +255,29 @@ public class LoginPrinci extends javax.swing.JFrame {
      
     }//GEN-LAST:event_BotaoCadastroFuncActionPerformed
     private boolean senhaVisivel = true ; // Variável para controlar a visibilidade da senha
+    
     private void OlhoVisibleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OlhoVisibleMouseClicked
-        if (evt.getButton() == MouseEvent.BUTTON1) { // Verifica se foi clicado com o botão esquerdo do mouse
-        senhaVisivel =!senhaVisivel; // Inverte o estado da visibilidade da senha primeiro
-
+         if (evt.getButton() == MouseEvent.BUTTON1) { // Verifica se foi clicado com o botão esquerdo do mouse
+        
+        // Se a senha está visível, torná-la oculta
         if (senhaVisivel) {
-            // Se a senha estiver oculta, torna visível
-            Senhapass.setEchoChar((char) 0);
-            // Altera o ícone para o olho visível
-            OlhoVisible.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/icons8_eye_20px_1.png")));
-        } else {
-            // Se a senha estiver visível, torna oculta
             Senhapass.setEchoChar('\u2022'); // Caractere de senha (círculo)
-            // Altera o ícone para o olho oculto
             OlhoVisible.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/icons8_invisible_20px_1.png")));
-        } 
-        OlhoVisible.repaint();
+            System.out.println("Senha oculta");
+            senhaVisivel = false; // Atualiza a variável para refletir o novo estado
+             
+        } else{
+            Senhapass.setEchoChar((char) 0);
+             OlhoVisible.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/icons8_eye_20px_1.png")));
+            System.out.println("Senha visível");
+            senhaVisivel = true; 
+        }
+        
+        // Se a senha está oculta, torná-la visível
         OlhoVisible.revalidate();
+        OlhoVisible.repaint();
+       
 
-        System.out.println("OlhoVisibleMouseClicked chamado! Senha visível: " + senhaVisivel);
     }
         
       
