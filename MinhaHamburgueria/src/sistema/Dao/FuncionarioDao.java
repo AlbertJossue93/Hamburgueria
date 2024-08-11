@@ -86,5 +86,44 @@ public class FuncionarioDao {
          
   
    }
+    public Funcionario buscarFuncionario(String nomeOuEmail) {
+    Funcionario func = null;
+    String sql = "SELECT * FROM funcionario WHERE nome = ? OR email = ?";
+    PreparedStatement stm = null;
+    ResultSet rs = null;
 
+    try {
+        stm = c.prepareStatement(sql);
+        stm.setString(1, nomeOuEmail);
+        stm.setString(2, nomeOuEmail);
+        rs = stm.executeQuery();
+
+        if (rs.next()) {
+            func = new Funcionario(
+                rs.getString("nome"),
+                rs.getString("cpf"),
+                rs.getString("email"),
+                rs.getString("telefone"),
+                rs.getString("cep"),
+                rs.getString("senha"),
+                rs.getString("rua"),
+                rs.getString("bairro"),
+                rs.getInt("numero")
+            );
+            
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (stm != null) stm.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return func;
+
+    }
 }

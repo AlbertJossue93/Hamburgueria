@@ -39,6 +39,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         GerenciarCardapio = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         GerenciarBebidas = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        EditarAdm = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 102, 0));
@@ -228,7 +230,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         MenuTelaPrincipal.add(MenuCardapio);
 
-        jMenu1.setText("Bebidas");
+        jMenu1.setText("Bebidas   |");
 
         GerenciarBebidas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         GerenciarBebidas.setText("Gerenciar Bebidas");
@@ -240,6 +242,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.add(GerenciarBebidas);
 
         MenuTelaPrincipal.add(jMenu1);
+
+        jMenu2.setText("Administrador");
+
+        EditarAdm.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        EditarAdm.setText("Editar");
+        EditarAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarAdmActionPerformed(evt);
+            }
+        });
+        jMenu2.add(EditarAdm);
+
+        MenuTelaPrincipal.add(jMenu2);
 
         setJMenuBar(MenuTelaPrincipal);
 
@@ -321,6 +336,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_ExcluirLancheActionPerformed
 
+    private void EditarAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarAdmActionPerformed
+      TelaAdm adm = new TelaAdm();
+      adm.setVisible(true);
+      this.dispose();
+    }//GEN-LAST:event_EditarAdmActionPerformed
+
      // Método para carregar dados do cardápio
      private void CarregarDadosCardapio(){
         try{
@@ -374,6 +395,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaodeSair;
     private javax.swing.JButton BotonDeBebidas;
+    private javax.swing.JMenuItem EditarAdm;
     private javax.swing.JButton ExcluirLanche;
     private javax.swing.JMenuItem GerenciarBebidas;
     private javax.swing.JMenuItem GerenciarCardapio;
@@ -386,6 +408,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
