@@ -84,7 +84,7 @@ public class FuncionarioDao {
     return autenticado; // Retorna se as credenciais foram autenticadas com sucesso ou nao.....
         
          
-  
+//  
    }
     public Funcionario buscarFuncionario(String nomeOuEmail) {
     Funcionario func = null;
@@ -100,6 +100,7 @@ public class FuncionarioDao {
 
         if (rs.next()) {
             func = new Funcionario(
+                rs.getInt("id_funcionario"),
                 rs.getString("nome"),
                 rs.getString("cpf"),
                 rs.getString("email"),

@@ -13,8 +13,23 @@ public class Funcionario {
     private String rua;
     private String bairro;
     private int numero;
-
+    
+    
+    // construtor sem id
     public Funcionario(String nome, String cpf, String email, String telefone, String cep, String senha, String rua, String bairro, int numero) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.telefone = telefone;
+        this.cep = cep;
+        this.senha = senha;
+        this.rua = rua;
+        this.bairro = bairro;
+        this.numero = numero;
+    }
+      // Construtor com ID
+    public Funcionario(int Id_funcionario, String nome, String cpf, String email, String telefone, String cep, String senha, String rua, String bairro, int numero) {
+        this.Id_funcionario = Id_funcionario;
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;

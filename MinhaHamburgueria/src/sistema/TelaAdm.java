@@ -1,26 +1,80 @@
 
 package sistema;
 
+import java.awt.Image;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import sistema.Dao.FuncionarioDao;
+//import javax.swing.JOptionPane;
+//import sistema.Dao.FuncionarioDao;
 import sistema.modelo.Funcionario;
+import sistema.modelo.Sessao;
 
 
 public class TelaAdm extends javax.swing.JFrame {
-
-   
+ 
+    
     public TelaAdm() {
+        
+        
         initComponents();
+        carregarDadosDoFuncionario();
+        
     }
 
     
      public void carregarDadosDoFuncionario() {
-   
-        
+           Funcionario funcionario = Sessao.getInstancia().getFuncionarioLogado();
+            if (funcionario != null) {
+            TxxtId.setText(String.valueOf(funcionario.getId_funcionario()));
+            txxtNome.setText(funcionario.getNome());
+            TxxtEmail.setText(funcionario.getEmail());
+            TxxtSenha.setText(funcionario.getSenha());
+
+            try {
+             String nomeCodificado = URLEncoder.encode(funcionario.getNome(), StandardCharsets.UTF_8.toString());
+             String avatarUrl = "https://ui-avatars.com/api/?name=" + nomeCodificado;
+             System.out.println("URL gerada: " + avatarUrl); // Verifique a URL gerada
+
+            URL url = new URL(avatarUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Accept", "image/png");
+             int responseCode = connection.getResponseCode();
+             if (responseCode == 200) {
+        InputStream inputStream = connection.getInputStream();
+            byte[] imageBytes = inputStream.readAllBytes();
+             if (imageBytes.length > 0) {
+            Image avatarImage = ImageIO.read(new ByteArrayInputStream(imageBytes));
+            if (avatarImage != null) {
+                Image scaledImage = avatarImage.getScaledInstance(Logo.getWidth(), Logo.getHeight(), Image.SCALE_SMOOTH);
+                Logo.setIcon(new ImageIcon(scaledImage));
+            } else {
+                System.out.println("A imagem retornada é nula.");
+            }
+        } else {
+            System.out.println("A resposta da API não contém dados.");
+        }
+         } else {
+        System.out.println("Erro na resposta da API: " + responseCode);
+           }
+         } catch (MalformedURLException e) {
+          System.out.println("URL malformada: " + e.getMessage());
+      } catch (IOException e) {
+     System.out.println("Erro ao ler a imagem: " + e.getMessage());
+           }
+            
+         }
      }
+
+     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -44,7 +98,8 @@ public class TelaAdm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Logo.setBackground(new java.awt.Color(204, 204, 255));
-        Logo.setText(" LOGO");
+        Logo.setLabelFor(Logo);
+        Logo.setText("Logo");
 
         jDesktopPane1.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -55,6 +110,14 @@ public class TelaAdm extends javax.swing.JFrame {
         jLabel4.setText("Email:");
 
         jLabel5.setText("Senha:");
+
+        TxxtId.setEditable(false);
+
+        txxtNome.setEditable(false);
+
+        TxxtEmail.setEditable(false);
+
+        TxxtSenha.setEditable(false);
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -93,9 +156,8 @@ public class TelaAdm extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TxxtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxxtId, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txxtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,10 +214,10 @@ public class TelaAdm extends javax.swing.JFrame {
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jDesktopPane2Layout.setVerticalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

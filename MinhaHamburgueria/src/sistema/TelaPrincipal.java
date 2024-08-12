@@ -5,10 +5,11 @@ import sistema.Dao.CardapioDao;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+//import sistema.modelo.Funcionario;
 // Classes Importas e Bibliotecas do Java..
 
 public class TelaPrincipal extends javax.swing.JFrame {
-
+  
    
     public TelaPrincipal() {
         initComponents();

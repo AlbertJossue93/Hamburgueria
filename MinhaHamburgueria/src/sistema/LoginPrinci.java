@@ -1,9 +1,11 @@
 
 package sistema;
-import java.awt.Color;
+//import java.awt.Color;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import sistema.Dao.FuncionarioDao;
+import sistema.modelo.Funcionario;
+import sistema.modelo.Sessao;
 public class LoginPrinci extends javax.swing.JFrame {
 
     
@@ -242,6 +244,8 @@ public class LoginPrinci extends javax.swing.JFrame {
         FuncionarioDao funcionariodao = new FuncionarioDao(conexao.c);
         
         if(funcionariodao.verificarCredenciais(nomeOuEmail, senha)){
+           Funcionario funcionario = funcionariodao.buscarFuncionario(nomeOuEmail);
+           Sessao.getInstancia().setFuncionarioLogado(funcionario);
           TelaPrincipal tela = new TelaPrincipal();
           tela.setVisible(true);
           this.dispose();
