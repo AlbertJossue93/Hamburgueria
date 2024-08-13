@@ -199,6 +199,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuPedido.setText("Pedidos    |");
 
         GerenciarPed.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        GerenciarPed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/add.png"))); // NOI18N
         GerenciarPed.setText("Adicionar pedido");
         GerenciarPed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,6 +209,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuPedido.add(GerenciarPed);
 
         TelaPedidosClientes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        TelaPedidosClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/atencion-al-cliente.png"))); // NOI18N
         TelaPedidosClientes.setText("Pedidos de Clientes");
         TelaPedidosClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,6 +223,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuCardapio.setText("Cardapio   |");
 
         GerenciarCardapio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        GerenciarCardapio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/hamburguesa.png"))); // NOI18N
         GerenciarCardapio.setText("Gerenciar Cardapio");
         GerenciarCardapio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,6 +237,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Bebidas   |");
 
         GerenciarBebidas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        GerenciarBebidas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/vidrio.png"))); // NOI18N
         GerenciarBebidas.setText("Gerenciar Bebidas");
         GerenciarBebidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,7 +251,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Administrador");
 
         EditarAdm.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        EditarAdm.setText("Editar");
+        EditarAdm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistema/Icons/agregar-usuario (1).png"))); // NOI18N
+        EditarAdm.setText("Usuario");
         EditarAdm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EditarAdmActionPerformed(evt);
