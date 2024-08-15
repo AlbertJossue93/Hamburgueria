@@ -1,2 +1,2 @@
 # Hamburgueria
-Em Desenvolvimento
+Sistema Gerenciador de Hamburgueria
